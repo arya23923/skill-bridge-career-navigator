@@ -1,0 +1,1364 @@
+    {
+  "Frontend Developer": [
+    {
+      "name": "Meta Frontend Developer Professional Certificate",
+      "provider": "Coursera (Meta)",
+      "url": "https://www.coursera.org/professional-certificates/meta-front-end-developer",
+      "level": "beginner"
+    },
+    {
+      "name": "JavaScript Algorithms and Data Structures",
+      "provider": "freeCodeCamp",
+      "url": "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures",
+      "level": "beginner"
+    },
+    {
+      "name": "Responsive Web Design Certification",
+      "provider": "freeCodeCamp",
+      "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design",
+      "level": "beginner"
+    },
+    {
+      "name": "React - The Complete Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/react-the-complete-guide-incl-redux",
+      "level": "intermediate"
+    },
+    {
+      "name": "Frontend Masters — Complete Intro to React",
+      "provider": "Frontend Masters",
+      "url": "https://frontendmasters.com/courses/complete-react-v8",
+      "level": "intermediate"
+    },
+    {
+      "name": "TypeScript: The Complete Developer's Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/typescript-the-complete-developers-guide",
+      "level": "intermediate"
+    }
+  ],
+  "Backend Developer": [
+    {
+      "name": "AWS Certified Developer – Associate",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-developer-associate",
+      "level": "intermediate"
+    },
+    {
+      "name": "Python for Everybody Specialization",
+      "provider": "Coursera (University of Michigan)",
+      "url": "https://www.coursera.org/specializations/python",
+      "level": "beginner"
+    },
+    {
+      "name": "Docker & Kubernetes: The Practical Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/docker-kubernetes-the-practical-guide",
+      "level": "intermediate"
+    },
+    {
+      "name": "PostgreSQL for Everybody",
+      "provider": "Coursera (University of Michigan)",
+      "url": "https://www.coursera.org/specializations/postgresql-for-everybody",
+      "level": "beginner"
+    },
+    {
+      "name": "Node.js, Express, MongoDB Bootcamp",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/nodejs-express-mongodb-bootcamp",
+      "level": "intermediate"
+    }
+  ],
+  "Full Stack Developer": [
+    {
+      "name": "Full Stack Open",
+      "provider": "University of Helsinki",
+      "url": "https://fullstackopen.com",
+      "level": "intermediate"
+    },
+    {
+      "name": "The Odin Project — Full Stack",
+      "provider": "The Odin Project",
+      "url": "https://www.theodinproject.com",
+      "level": "beginner"
+    },
+    {
+      "name": "Full Stack Web Development with React Specialization",
+      "provider": "Coursera (HKUST)",
+      "url": "https://www.coursera.org/specializations/full-stack-react",
+      "level": "intermediate"
+    },
+    {
+      "name": "The Complete Web Developer Bootcamp",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/the-web-developer-bootcamp",
+      "level": "beginner"
+    }
+  ],
+  "ML Engineer": [
+    {
+      "name": "Machine Learning Specialization",
+      "provider": "Coursera (DeepLearning.AI)",
+      "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+      "level": "beginner"
+    },
+    {
+      "name": "TensorFlow Developer Certificate",
+      "provider": "Google",
+      "url": "https://www.tensorflow.org/certificate",
+      "level": "intermediate"
+    },
+    {
+      "name": "Deep Learning Specialization",
+      "provider": "Coursera (DeepLearning.AI)",
+      "url": "https://www.coursera.org/specializations/deep-learning",
+      "level": "intermediate"
+    },
+    {
+      "name": "AWS Certified Machine Learning – Specialty",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-machine-learning-specialty",
+      "level": "advanced"
+    }
+  ],
+  "DevOps Engineer": [
+    {
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "provider": "CNCF / Linux Foundation",
+      "url": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka",
+      "level": "advanced"
+    },
+    {
+      "name": "AWS Certified DevOps Engineer – Professional",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-devops-engineer-professional",
+      "level": "advanced"
+    },
+    {
+      "name": "HashiCorp Certified: Terraform Associate",
+      "provider": "HashiCorp",
+      "url": "https://www.hashicorp.com/certification/terraform-associate",
+      "level": "intermediate"
+    },
+    {
+      "name": "Docker Certified Associate",
+      "provider": "Docker",
+      "url": "https://training.mirantis.com/certification/dca",
+      "level": "intermediate"
+    }
+  ],
+  "Software Developer": [
+    {
+      "name": "CS50: Introduction to Computer Science",
+      "provider": "Harvard / edX",
+      "url": "https://cs50.harvard.edu/x",
+      "level": "beginner"
+    },
+    {
+      "name": "Oracle Certified Professional: Java SE",
+      "provider": "Oracle",
+      "url": "https://education.oracle.com/java-se-17-developer/pexam_1Z0-829",
+      "level": "intermediate"
+    },
+    {
+      "name": "PCEP – Certified Entry-Level Python Programmer",
+      "provider": "Python Institute",
+      "url": "https://pythoninstitute.org/pcep",
+      "level": "beginner"
+    },
+    {
+      "name": "Software Design and Architecture Specialization",
+      "provider": "Coursera (University of Alberta)",
+      "url": "https://www.coursera.org/specializations/software-design-architecture",
+      "level": "intermediate"
+    }
+  ],
+  "QA Analyst": [
+    {
+      "name": "ISTQB Foundation Level (CTFL)",
+      "provider": "ISTQB",
+      "url": "https://www.istqb.org/certifications/certified-tester-foundation-level",
+      "level": "beginner"
+    },
+    {
+      "name": "Selenium WebDriver with Java – Basics to Advanced",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/selenium-real-time-examplesinterview-questions",
+      "level": "intermediate"
+    },
+    {
+      "name": "API Testing with Postman",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/postman-the-complete-guide",
+      "level": "beginner"
+    },
+    {
+      "name": "Cypress — Modern Automation Testing",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/cypress-io-master-class",
+      "level": "intermediate"
+    }
+  ],
+  "AI/ML Engineer": [
+    {
+      "name": "Machine Learning Specialization",
+      "provider": "Coursera (DeepLearning.AI)",
+      "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+      "level": "beginner"
+    },
+    {
+      "name": "Deep Learning Specialization",
+      "provider": "Coursera (DeepLearning.AI)",
+      "url": "https://www.coursera.org/specializations/deep-learning",
+      "level": "intermediate"
+    },
+    {
+      "name": "TensorFlow Developer Certificate",
+      "provider": "Google",
+      "url": "https://www.tensorflow.org/certificate",
+      "level": "intermediate"
+    },
+    {
+      "name": "Generative AI with LLMs",
+      "provider": "Coursera (DeepLearning.AI + AWS)",
+      "url": "https://www.coursera.org/learn/generative-ai-with-llms",
+      "level": "intermediate"
+    },
+    {
+      "name": "AWS Certified Machine Learning – Specialty",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-machine-learning-specialty",
+      "level": "advanced"
+    }
+  ],
+  "Data Scientist": [
+    {
+      "name": "IBM Data Science Professional Certificate",
+      "provider": "Coursera (IBM)",
+      "url": "https://www.coursera.org/professional-certificates/ibm-data-science",
+      "level": "beginner"
+    },
+    {
+      "name": "Google Advanced Data Analytics Certificate",
+      "provider": "Coursera (Google)",
+      "url": "https://www.coursera.org/professional-certificates/google-advanced-data-analytics",
+      "level": "intermediate"
+    },
+    {
+      "name": "Statistics with Python Specialization",
+      "provider": "Coursera (University of Michigan)",
+      "url": "https://www.coursera.org/specializations/statistics-with-python",
+      "level": "beginner"
+    },
+    {
+      "name": "Practical Data Science on AWS Specialization",
+      "provider": "Coursera (DeepLearning.AI)",
+      "url": "https://www.coursera.org/specializations/practical-data-science",
+      "level": "advanced"
+    }
+  ],
+  "Cloud Architect": [
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-solutions-architect-associate",
+      "level": "intermediate"
+    },
+    {
+      "name": "AWS Certified Solutions Architect – Professional",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-solutions-architect-professional",
+      "level": "advanced"
+    },
+    {
+      "name": "Google Cloud Professional Cloud Architect",
+      "provider": "Google Cloud",
+      "url": "https://cloud.google.com/learn/certification/cloud-architect",
+      "level": "advanced"
+    },
+    {
+      "name": "Microsoft Azure Solutions Architect Expert (AZ-305)",
+      "provider": "Microsoft",
+      "url": "https://learn.microsoft.com/en-us/certifications/azure-solutions-architect",
+      "level": "advanced"
+    },
+    {
+      "name": "HashiCorp Certified: Terraform Associate",
+      "provider": "HashiCorp",
+      "url": "https://www.hashicorp.com/certification/terraform-associate",
+      "level": "intermediate"
+    }
+  ],
+  "Cybersecurity Analyst": [
+    {
+      "name": "CompTIA Security+",
+      "provider": "CompTIA",
+      "url": "https://www.comptia.org/certifications/security",
+      "level": "beginner"
+    },
+    {
+      "name": "Certified Ethical Hacker (CEH)",
+      "provider": "EC-Council",
+      "url": "https://www.eccouncil.org/programs/certified-ethical-hacker-ceh",
+      "level": "intermediate"
+    },
+    {
+      "name": "Google Cybersecurity Professional Certificate",
+      "provider": "Coursera (Google)",
+      "url": "https://www.coursera.org/professional-certificates/google-cybersecurity",
+      "level": "beginner"
+    },
+    {
+      "name": "CompTIA CySA+ (Cybersecurity Analyst)",
+      "provider": "CompTIA",
+      "url": "https://www.comptia.org/certifications/cybersecurity-analyst",
+      "level": "intermediate"
+    }
+  ],
+  "Game Developer": [
+    {
+      "name": "Unity Certified Associate: Game Developer",
+      "provider": "Unity Technologies",
+      "url": "https://unity.com/products/unity-certifications",
+      "level": "beginner"
+    },
+    {
+      "name": "C# Programming for Unity Game Development",
+      "provider": "Coursera (University of Colorado)",
+      "url": "https://www.coursera.org/specializations/programming-unity-game-development",
+      "level": "beginner"
+    },
+    {
+      "name": "Unreal Engine C++ Developer: Learn C++ and Make Video Games",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/unrealcourse",
+      "level": "intermediate"
+    },
+    {
+      "name": "Introduction to Game Development Specialization",
+      "provider": "Coursera (Michigan State University)",
+      "url": "https://www.coursera.org/specializations/game-development",
+      "level": "beginner"
+    }
+  ],
+  "Embedded Systems Engineer": [
+    {
+      "name": "Introduction to Embedded Systems Software and Development Environments",
+      "provider": "Coursera (University of Colorado Boulder)",
+      "url": "https://www.coursera.org/learn/introduction-embedded-systems",
+      "level": "beginner"
+    },
+    {
+      "name": "ARM Cortex-M Bare-Metal Embedded C Programming",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/embedded-systems-bare-metal-programming",
+      "level": "intermediate"
+    },
+    {
+      "name": "RTOS Fundamentals with FreeRTOS",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/mastering-rtos-hands-on-with-freertos-arduino-and-stm32fy",
+      "level": "intermediate"
+    },
+    {
+      "name": "Embedded Software Engineering Certificate",
+      "provider": "edX (IEEE)",
+      "url": "https://www.edx.org/professional-certificate/ieee-embedded-software-engineering",
+      "level": "advanced"
+    }
+  ],
+  "Android Developer": [
+    {
+      "name": "Meta Android Developer Professional Certificate",
+      "provider": "Coursera (Meta)",
+      "url": "https://www.coursera.org/professional-certificates/meta-android-developer",
+      "level": "beginner"
+    },
+    {
+      "name": "Android Basics with Compose",
+      "provider": "Google / developer.android.com",
+      "url": "https://developer.android.com/courses/android-basics-compose/course",
+      "level": "beginner"
+    },
+    {
+      "name": "Associate Android Developer Certification",
+      "provider": "Google",
+      "url": "https://developers.google.com/certification/associate-android-developer",
+      "level": "intermediate"
+    },
+    {
+      "name": "Kotlin for Java Developers",
+      "provider": "Coursera (JetBrains)",
+      "url": "https://www.coursera.org/learn/kotlin-for-java-developers",
+      "level": "intermediate"
+    }
+  ],
+  "iOS Developer": [
+    {
+      "name": "Meta iOS Developer Professional Certificate",
+      "provider": "Coursera (Meta)",
+      "url": "https://www.coursera.org/professional-certificates/meta-ios-developer",
+      "level": "beginner"
+    },
+    {
+      "name": "SwiftUI Masterclass — iOS App Development",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/swiftui-masterclass-course-ios-development-with-swift",
+      "level": "beginner"
+    },
+    {
+      "name": "iOS & Swift — The Complete iOS App Development Bootcamp",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/ios-13-app-development-bootcamp",
+      "level": "intermediate"
+    },
+    {
+      "name": "Swift Accelerator Programme",
+      "provider": "Apple Developer Academy",
+      "url": "https://developer.apple.com/learn",
+      "level": "intermediate"
+    }
+  ],
+  "Blockchain Developer": [
+    {
+      "name": "Blockchain Specialization",
+      "provider": "Coursera (University at Buffalo)",
+      "url": "https://www.coursera.org/specializations/blockchain",
+      "level": "beginner"
+    },
+    {
+      "name": "Ethereum and Solidity: The Complete Developer's Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide",
+      "level": "intermediate"
+    },
+    {
+      "name": "Certified Blockchain Developer (CBD)",
+      "provider": "Blockchain Council",
+      "url": "https://www.blockchain-council.org/certifications/certified-blockchain-developer",
+      "level": "intermediate"
+    },
+    {
+      "name": "Web3 and Blockchain Fundamentals",
+      "provider": "edX (Linux Foundation)",
+      "url": "https://www.edx.org/learn/blockchain/the-linux-foundation-web3-and-blockchain-fundamentals",
+      "level": "beginner"
+    }
+  ],
+  "Smart Contract Developer": [
+    {
+      "name": "Solidity, Blockchain, and Smart Contract Course",
+      "provider": "freeCodeCamp (YouTube)",
+      "url": "https://www.youtube.com/watch?v=M576WGiDBdQ",
+      "level": "beginner"
+    },
+    {
+      "name": "Ethereum and Solidity: The Complete Developer's Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/ethereum-and-solidity-the-complete-developers-guide",
+      "level": "intermediate"
+    },
+    {
+      "name": "Smart Contract Security Certification",
+      "provider": "Blockchain Council",
+      "url": "https://www.blockchain-council.org/certifications/certified-smart-contract-auditor",
+      "level": "advanced"
+    },
+    {
+      "name": "Foundry Fundamentals",
+      "provider": "Cyfrin Updraft",
+      "url": "https://updraft.cyfrin.io/courses/foundry",
+      "level": "intermediate"
+    }
+  ],
+  "Web3 Developer": [
+    {
+      "name": "Web3 Development with React and Solidity",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/web3-eth-solidity",
+      "level": "intermediate"
+    },
+    {
+      "name": "Blockchain Specialization",
+      "provider": "Coursera (University at Buffalo)",
+      "url": "https://www.coursera.org/specializations/blockchain",
+      "level": "beginner"
+    },
+    {
+      "name": "The Complete NFT Web3 0 Development Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/the-complete-nft-web3-development-guide",
+      "level": "intermediate"
+    },
+    {
+      "name": "Certified Web3 Developer",
+      "provider": "Blockchain Council",
+      "url": "https://www.blockchain-council.org/certifications/certified-web3-developer",
+      "level": "intermediate"
+    }
+  ],
+  "AR/VR Developer": [
+    {
+      "name": "Unity XR Development Specialization",
+      "provider": "Coursera (Unity)",
+      "url": "https://www.coursera.org/specializations/unity-xr",
+      "level": "intermediate"
+    },
+    {
+      "name": "VR Development Fundamentals with Oculus Quest",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/oculus-quest-development-with-unity",
+      "level": "beginner"
+    },
+    {
+      "name": "Introduction to Augmented Reality and ARCore",
+      "provider": "Coursera (Google AR & VR)",
+      "url": "https://www.coursera.org/learn/ar",
+      "level": "beginner"
+    },
+    {
+      "name": "Unity Certified Professional: Programmer",
+      "provider": "Unity Technologies",
+      "url": "https://unity.com/products/unity-certifications/professional-programmer",
+      "level": "advanced"
+    }
+  ],
+  "Desktop Application Developer": [
+    {
+      "name": "Qt Core for Beginners",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/qt-core-for-beginners",
+      "level": "beginner"
+    },
+    {
+      "name": "Electron From Scratch: Build Desktop Apps With JavaScript",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/electron-from-scratch",
+      "level": "beginner"
+    },
+    {
+      "name": ".NET MAUI Cross-Platform App Development",
+      "provider": "Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/training/paths/build-apps-with-dotnet-maui",
+      "level": "intermediate"
+    },
+    {
+      "name": "Rust Programming: The Complete Developer's Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/rust-programming-the-complete-guide",
+      "level": "intermediate"
+    }
+  ],
+  "Systems Programmer": [
+    {
+      "name": "CS107: Computer Organization and Systems",
+      "provider": "Stanford Online",
+      "url": "https://web.stanford.edu/class/cs107",
+      "level": "intermediate"
+    },
+    {
+      "name": "The Linux Programming Interface",
+      "provider": "Self-study (Michael Kerrisk)",
+      "url": "https://man7.org/tlpi",
+      "level": "advanced"
+    },
+    {
+      "name": "Rust Programming: The Complete Developer's Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/rust-programming-the-complete-guide",
+      "level": "intermediate"
+    },
+    {
+      "name": "Linux Foundation Certified Systems Administrator (LFCS)",
+      "provider": "Linux Foundation",
+      "url": "https://training.linuxfoundation.org/certification/linux-foundation-certified-sysadmin-lfcs",
+      "level": "intermediate"
+    }
+  ],
+  "Compiler Engineer": [
+    {
+      "name": "Compilers — Stanford Online",
+      "provider": "Stanford / edX",
+      "url": "https://www.edx.org/course/compilers",
+      "level": "advanced"
+    },
+    {
+      "name": "LLVM Essentials",
+      "provider": "Packt (book + course)",
+      "url": "https://www.packtpub.com/product/llvm-essentials",
+      "level": "advanced"
+    },
+    {
+      "name": "Programming Languages (Parts A, B, C)",
+      "provider": "Coursera (University of Washington)",
+      "url": "https://www.coursera.org/learn/programming-languages",
+      "level": "intermediate"
+    },
+    {
+      "name": "Crafting Interpreters (self-study)",
+      "provider": "craftinginterpreters.com",
+      "url": "https://craftinginterpreters.com",
+      "level": "intermediate"
+    }
+  ],
+  "Graphics Engineer": [
+    {
+      "name": "Interactive Computer Graphics with WebGL",
+      "provider": "Coursera (University of New Mexico)",
+      "url": "https://www.coursera.org/learn/interactive-computer-graphics",
+      "level": "beginner"
+    },
+    {
+      "name": "Computer Graphics (CS148)",
+      "provider": "Stanford Online",
+      "url": "https://web.stanford.edu/class/cs148",
+      "level": "intermediate"
+    },
+    {
+      "name": "Vulkan API: The Comprehensive Tutorial",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/vulkan-api",
+      "level": "advanced"
+    },
+    {
+      "name": "Ray Tracing in One Weekend Series",
+      "provider": "Self-study (raytracing.github.io)",
+      "url": "https://raytracing.github.io",
+      "level": "intermediate"
+    }
+  ],
+  "Audio Engineer": [
+    {
+      "name": "Music Production Specialization",
+      "provider": "Coursera (Berklee)",
+      "url": "https://www.coursera.org/specializations/music-production",
+      "level": "beginner"
+    },
+    {
+      "name": "Audio Signal Processing for Music Applications",
+      "provider": "Coursera (UPF Barcelona)",
+      "url": "https://www.coursera.org/learn/audio-signal-processing",
+      "level": "intermediate"
+    },
+    {
+      "name": "JUCE Framework Audio Plugin Development",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/juce-framework-audio-plugin-development",
+      "level": "intermediate"
+    },
+    {
+      "name": "Wwise-101 Certification",
+      "provider": "Audiokinetic (Wwise)",
+      "url": "https://www.audiokinetic.com/courses/wwise101",
+      "level": "beginner"
+    }
+  ],
+  "Firmware Engineer": [
+    {
+      "name": "Introduction to Embedded Systems Software and Development Environments",
+      "provider": "Coursera (University of Colorado Boulder)",
+      "url": "https://www.coursera.org/learn/introduction-embedded-systems",
+      "level": "beginner"
+    },
+    {
+      "name": "ARM Cortex-M Bare-Metal Embedded C Programming",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/embedded-systems-bare-metal-programming",
+      "level": "intermediate"
+    },
+    {
+      "name": "STM32 Bare-Metal Firmware Development",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/stm32-bare-metal-firmware",
+      "level": "intermediate"
+    },
+    {
+      "name": "Zephyr RTOS Developer Certification",
+      "provider": "Linux Foundation",
+      "url": "https://training.linuxfoundation.org/training/introduction-to-the-zephyr-rtos-lfd435",
+      "level": "advanced"
+    }
+  ],
+  "Data Engineer": [
+    {
+      "name": "IBM Data Engineering Professional Certificate",
+      "provider": "Coursera (IBM)",
+      "url": "https://www.coursera.org/professional-certificates/ibm-data-engineer",
+      "level": "beginner"
+    },
+    {
+      "name": "dbt Fundamentals",
+      "provider": "dbt Labs",
+      "url": "https://courses.getdbt.com/courses/fundamentals",
+      "level": "beginner"
+    },
+    {
+      "name": "Apache Kafka for Beginners",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/apache-kafka",
+      "level": "intermediate"
+    },
+    {
+      "name": "Google Professional Data Engineer",
+      "provider": "Google Cloud",
+      "url": "https://cloud.google.com/learn/certification/data-engineer",
+      "level": "advanced"
+    },
+    {
+      "name": "Snowflake SnowPro Core Certification",
+      "provider": "Snowflake",
+      "url": "https://www.snowflake.com/certifications",
+      "level": "intermediate"
+    }
+  ],
+  "Data Analyst": [
+    {
+      "name": "Google Data Analytics Professional Certificate",
+      "provider": "Coursera (Google)",
+      "url": "https://www.coursera.org/professional-certificates/google-data-analytics",
+      "level": "beginner"
+    },
+    {
+      "name": "IBM Data Analyst Professional Certificate",
+      "provider": "Coursera (IBM)",
+      "url": "https://www.coursera.org/professional-certificates/ibm-data-analyst",
+      "level": "beginner"
+    },
+    {
+      "name": "Tableau Desktop Specialist",
+      "provider": "Tableau",
+      "url": "https://www.tableau.com/learn/certification/desktop-specialist",
+      "level": "intermediate"
+    },
+    {
+      "name": "Microsoft Power BI Data Analyst (PL-300)",
+      "provider": "Microsoft",
+      "url": "https://learn.microsoft.com/en-us/certifications/power-bi-data-analyst-associate",
+      "level": "intermediate"
+    }
+  ],
+  "MLOps Engineer": [
+    {
+      "name": "MLOps Specialization",
+      "provider": "Coursera (DeepLearning.AI)",
+      "url": "https://www.coursera.org/specializations/mlops-fundamentals",
+      "level": "intermediate"
+    },
+    {
+      "name": "Kubeflow for Machine Learning",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/kubeflow-for-machine-learning",
+      "level": "advanced"
+    },
+    {
+      "name": "AWS Certified Machine Learning – Specialty",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-machine-learning-specialty",
+      "level": "advanced"
+    },
+    {
+      "name": "MLflow: End-to-End MLOps with MLflow",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/mlflow-course",
+      "level": "intermediate"
+    }
+  ],
+  "NLP Engineer": [
+    {
+      "name": "Natural Language Processing Specialization",
+      "provider": "Coursera (DeepLearning.AI)",
+      "url": "https://www.coursera.org/specializations/natural-language-processing",
+      "level": "intermediate"
+    },
+    {
+      "name": "Hugging Face NLP Course",
+      "provider": "Hugging Face",
+      "url": "https://huggingface.co/learn/nlp-course",
+      "level": "intermediate"
+    },
+    {
+      "name": "LangChain & Vector Databases in Production",
+      "provider": "Activeloop (free)",
+      "url": "https://learn.activeloop.ai/courses/langchain",
+      "level": "intermediate"
+    },
+    {
+      "name": "LLMOps: Building Real-World Applications with Large Language Models",
+      "provider": "Udacity",
+      "url": "https://www.udacity.com/course/large-language-model-operations--nd607",
+      "level": "advanced"
+    }
+  ],
+  "Computer Vision Engineer": [
+    {
+      "name": "Deep Learning Specialization",
+      "provider": "Coursera (DeepLearning.AI)",
+      "url": "https://www.coursera.org/specializations/deep-learning",
+      "level": "intermediate"
+    },
+    {
+      "name": "Computer Vision Nanodegree",
+      "provider": "Udacity",
+      "url": "https://www.udacity.com/course/computer-vision-nanodegree--nd891",
+      "level": "intermediate"
+    },
+    {
+      "name": "OpenCV Python Bootcamp",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/python-opencv-computer-vision",
+      "level": "beginner"
+    },
+    {
+      "name": "TensorFlow Developer Certificate",
+      "provider": "Google",
+      "url": "https://www.tensorflow.org/certificate",
+      "level": "intermediate"
+    }
+  ],
+  "AI Research Engineer": [
+    {
+      "name": "Deep Learning Specialization",
+      "provider": "Coursera (DeepLearning.AI)",
+      "url": "https://www.coursera.org/specializations/deep-learning",
+      "level": "intermediate"
+    },
+    {
+      "name": "Mathematics for Machine Learning Specialization",
+      "provider": "Coursera (Imperial College London)",
+      "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+      "level": "intermediate"
+    },
+    {
+      "name": "Full Stack Deep Learning",
+      "provider": "fullstackdeeplearning.com",
+      "url": "https://fullstackdeeplearning.com",
+      "level": "advanced"
+    },
+    {
+      "name": "Parallel Programming in CUDA C/C++",
+      "provider": "NVIDIA Deep Learning Institute",
+      "url": "https://www.nvidia.com/en-us/training/instructor-led-workshops/fundamentals-of-accelerated-computing-with-cuda-c-c++",
+      "level": "advanced"
+    }
+  ],
+  "Business Intelligence Developer": [
+    {
+      "name": "Microsoft Power BI Data Analyst (PL-300)",
+      "provider": "Microsoft",
+      "url": "https://learn.microsoft.com/en-us/certifications/power-bi-data-analyst-associate",
+      "level": "intermediate"
+    },
+    {
+      "name": "Tableau Desktop Specialist",
+      "provider": "Tableau",
+      "url": "https://www.tableau.com/learn/certification/desktop-specialist",
+      "level": "intermediate"
+    },
+    {
+      "name": "Looker Developer Certification",
+      "provider": "Google Cloud / Looker",
+      "url": "https://cloud.google.com/learn/certification/looker-business-analyst",
+      "level": "intermediate"
+    },
+    {
+      "name": "dbt Fundamentals",
+      "provider": "dbt Labs",
+      "url": "https://courses.getdbt.com/courses/fundamentals",
+      "level": "beginner"
+    }
+  ],
+  "Analytics Engineer": [
+    {
+      "name": "dbt Fundamentals",
+      "provider": "dbt Labs",
+      "url": "https://courses.getdbt.com/courses/fundamentals",
+      "level": "beginner"
+    },
+    {
+      "name": "dbt Advanced",
+      "provider": "dbt Labs",
+      "url": "https://courses.getdbt.com/courses/advanced-dbt",
+      "level": "intermediate"
+    },
+    {
+      "name": "Snowflake SnowPro Core Certification",
+      "provider": "Snowflake",
+      "url": "https://www.snowflake.com/certifications",
+      "level": "intermediate"
+    },
+    {
+      "name": "Google Professional Data Engineer",
+      "provider": "Google Cloud",
+      "url": "https://cloud.google.com/learn/certification/data-engineer",
+      "level": "advanced"
+    }
+  ],
+  "Site Reliability Engineer": [
+    {
+      "name": "Google Professional Cloud DevOps Engineer",
+      "provider": "Google Cloud",
+      "url": "https://cloud.google.com/learn/certification/cloud-devops-engineer",
+      "level": "advanced"
+    },
+    {
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "provider": "CNCF / Linux Foundation",
+      "url": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka",
+      "level": "advanced"
+    },
+    {
+      "name": "Site Reliability Engineering: Measuring and Managing Reliability",
+      "provider": "Coursera (Google)",
+      "url": "https://www.coursera.org/learn/site-reliability-engineering-slos",
+      "level": "intermediate"
+    },
+    {
+      "name": "Prometheus Certified Associate (PCA)",
+      "provider": "CNCF / Linux Foundation",
+      "url": "https://training.linuxfoundation.org/certification/prometheus-certified-associate",
+      "level": "intermediate"
+    }
+  ],
+  "Platform Engineer": [
+    {
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "provider": "CNCF / Linux Foundation",
+      "url": "https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka",
+      "level": "advanced"
+    },
+    {
+      "name": "HashiCorp Certified: Terraform Associate",
+      "provider": "HashiCorp",
+      "url": "https://www.hashicorp.com/certification/terraform-associate",
+      "level": "intermediate"
+    },
+    {
+      "name": "Argo CD for Beginners — GitOps CI/CD",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/argo-cd-essential-guide-for-end-users-with-practice",
+      "level": "intermediate"
+    },
+    {
+      "name": "Istio Service Mesh Fundamentals",
+      "provider": "Linux Foundation",
+      "url": "https://training.linuxfoundation.org/training/introduction-to-istio-lfs144x",
+      "level": "intermediate"
+    }
+  ],
+  "Infrastructure Engineer": [
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-solutions-architect-associate",
+      "level": "intermediate"
+    },
+    {
+      "name": "HashiCorp Certified: Terraform Associate",
+      "provider": "HashiCorp",
+      "url": "https://www.hashicorp.com/certification/terraform-associate",
+      "level": "intermediate"
+    },
+    {
+      "name": "Red Hat Certified Engineer (RHCE)",
+      "provider": "Red Hat",
+      "url": "https://www.redhat.com/en/services/certification/rhce",
+      "level": "advanced"
+    },
+    {
+      "name": "Google Professional Cloud Architect",
+      "provider": "Google Cloud",
+      "url": "https://cloud.google.com/learn/certification/cloud-architect",
+      "level": "advanced"
+    }
+  ],
+  "Database Administrator": [
+    {
+      "name": "Oracle Database SQL Certified Associate",
+      "provider": "Oracle",
+      "url": "https://education.oracle.com/oracle-database-sql-certified-associate/trackp_457",
+      "level": "beginner"
+    },
+    {
+      "name": "PostgreSQL DBA Bootcamp",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/postgresqlmasterclass",
+      "level": "intermediate"
+    },
+    {
+      "name": "Microsoft Azure Database Administrator Associate (DP-300)",
+      "provider": "Microsoft",
+      "url": "https://learn.microsoft.com/en-us/certifications/azure-database-administrator-associate",
+      "level": "intermediate"
+    },
+    {
+      "name": "MongoDB Certified DBA Associate",
+      "provider": "MongoDB University",
+      "url": "https://learn.mongodb.com/pages/mongodb-associate-dba-exam",
+      "level": "intermediate"
+    }
+  ],
+  "Network Engineer": [
+    {
+      "name": "Cisco Certified Network Associate (CCNA)",
+      "provider": "Cisco",
+      "url": "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html",
+      "level": "beginner"
+    },
+    {
+      "name": "Cisco Certified Network Professional (CCNP Enterprise)",
+      "provider": "Cisco",
+      "url": "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/professional/ccnp-enterprise.html",
+      "level": "advanced"
+    },
+    {
+      "name": "CompTIA Network+",
+      "provider": "CompTIA",
+      "url": "https://www.comptia.org/certifications/network",
+      "level": "beginner"
+    },
+    {
+      "name": "Juniper Networks Certified Associate (JNCIA)",
+      "provider": "Juniper Networks",
+      "url": "https://www.juniper.net/us/en/training/certification/tracks/junos/jncia-junos.html",
+      "level": "beginner"
+    }
+  ],
+  "Linux Systems Administrator": [
+    {
+      "name": "Red Hat Certified System Administrator (RHCSA)",
+      "provider": "Red Hat",
+      "url": "https://www.redhat.com/en/services/certification/rhcsa",
+      "level": "intermediate"
+    },
+    {
+      "name": "Linux Foundation Certified System Administrator (LFCS)",
+      "provider": "Linux Foundation",
+      "url": "https://training.linuxfoundation.org/certification/linux-foundation-certified-sysadmin-lfcs",
+      "level": "intermediate"
+    },
+    {
+      "name": "CompTIA Linux+",
+      "provider": "CompTIA",
+      "url": "https://www.comptia.org/certifications/linux",
+      "level": "beginner"
+    },
+    {
+      "name": "Ansible for the Absolute Beginner",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/learn-ansible",
+      "level": "beginner"
+    }
+  ],
+  "Penetration Tester": [
+    {
+      "name": "Offensive Security Certified Professional (OSCP)",
+      "provider": "Offensive Security",
+      "url": "https://www.offsec.com/courses/pen-200",
+      "level": "advanced"
+    },
+    {
+      "name": "CompTIA PenTest+",
+      "provider": "CompTIA",
+      "url": "https://www.comptia.org/certifications/pentest",
+      "level": "intermediate"
+    },
+    {
+      "name": "Certified Ethical Hacker (CEH)",
+      "provider": "EC-Council",
+      "url": "https://www.eccouncil.org/programs/certified-ethical-hacker-ceh",
+      "level": "intermediate"
+    },
+    {
+      "name": "eLearnSecurity Junior Penetration Tester (eJPT)",
+      "provider": "INE Security",
+      "url": "https://security.ine.com/certifications/ejpt-certification",
+      "level": "beginner"
+    }
+  ],
+  "Security Engineer": [
+    {
+      "name": "Certified Information Systems Security Professional (CISSP)",
+      "provider": "ISC2",
+      "url": "https://www.isc2.org/Certifications/CISSP",
+      "level": "advanced"
+    },
+    {
+      "name": "AWS Certified Security – Specialty",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-security-specialty",
+      "level": "advanced"
+    },
+    {
+      "name": "CompTIA Security+",
+      "provider": "CompTIA",
+      "url": "https://www.comptia.org/certifications/security",
+      "level": "beginner"
+    },
+    {
+      "name": "Google Professional Cloud Security Engineer",
+      "provider": "Google Cloud",
+      "url": "https://cloud.google.com/learn/certification/cloud-security-engineer",
+      "level": "advanced"
+    }
+  ],
+  "Application Security Engineer": [
+    {
+      "name": "Certified Application Security Engineer (CASE) — Java",
+      "provider": "EC-Council",
+      "url": "https://www.eccouncil.org/programs/certified-application-security-engineer-case",
+      "level": "intermediate"
+    },
+    {
+      "name": "GIAC Web Application Penetration Tester (GWAPT)",
+      "provider": "GIAC / SANS",
+      "url": "https://www.giac.org/certifications/web-application-penetration-tester-gwapt",
+      "level": "advanced"
+    },
+    {
+      "name": "Secure Software Development Fundamentals",
+      "provider": "edX (Linux Foundation)",
+      "url": "https://www.edx.org/professional-certificate/linuxfoundationx-secure-software-development-fundamentals",
+      "level": "beginner"
+    },
+    {
+      "name": "OWASP Top 10 Application Security Risks",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/owasp-top-10-web-application-security",
+      "level": "beginner"
+    }
+  ],
+  "UI Engineer": [
+    {
+      "name": "Responsive Web Design Certification",
+      "provider": "freeCodeCamp",
+      "url": "https://www.freecodecamp.org/learn/2022/responsive-web-design",
+      "level": "beginner"
+    },
+    {
+      "name": "Accessibility in JavaScript Applications",
+      "provider": "Frontend Masters",
+      "url": "https://frontendmasters.com/courses/javascript-accessibility",
+      "level": "intermediate"
+    },
+    {
+      "name": "Design Systems with Storybook",
+      "provider": "Storybook Tutorials",
+      "url": "https://storybook.js.org/tutorials/design-systems-for-developers",
+      "level": "intermediate"
+    },
+    {
+      "name": "CSS for JavaScript Developers",
+      "provider": "Josh Comeau (joshwcomeau.com)",
+      "url": "https://css-for-js.dev",
+      "level": "intermediate"
+    }
+  ],
+  "UX Engineer": [
+    {
+      "name": "Google UX Design Professional Certificate",
+      "provider": "Coursera (Google)",
+      "url": "https://www.coursera.org/professional-certificates/google-ux-design",
+      "level": "beginner"
+    },
+    {
+      "name": "Interaction Design Specialization",
+      "provider": "Coursera (UC San Diego)",
+      "url": "https://www.coursera.org/specializations/interaction-design",
+      "level": "intermediate"
+    },
+    {
+      "name": "Human-Computer Interaction — Design Principles",
+      "provider": "edX",
+      "url": "https://www.edx.org/learn/human-computer-interaction",
+      "level": "intermediate"
+    },
+    {
+      "name": "Figma UI UX Design Essentials",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/figma-ux-ui-design-user-experience-tutorial-course",
+      "level": "beginner"
+    }
+  ],
+  "Design Systems Engineer": [
+    {
+      "name": "Design Systems with Storybook",
+      "provider": "Storybook Tutorials",
+      "url": "https://storybook.js.org/tutorials/design-systems-for-developers",
+      "level": "intermediate"
+    },
+    {
+      "name": "Figma: Advanced Prototyping and Design Systems",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/figma-ux-ui-design-user-experience-tutorial-course",
+      "level": "intermediate"
+    },
+    {
+      "name": "CSS for JavaScript Developers",
+      "provider": "Josh Comeau (joshwcomeau.com)",
+      "url": "https://css-for-js.dev",
+      "level": "intermediate"
+    },
+    {
+      "name": "TypeScript: The Complete Developer's Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/typescript-the-complete-developers-guide",
+      "level": "intermediate"
+    }
+  ],
+  "API Developer": [
+    {
+      "name": "REST API Design, Development & Management",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/rest-api",
+      "level": "beginner"
+    },
+    {
+      "name": "GraphQL with React: The Complete Developer's Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/graphql-with-react-course",
+      "level": "intermediate"
+    },
+    {
+      "name": "API Security Fundamentals",
+      "provider": "APIsec University",
+      "url": "https://www.apisecuniversity.com/courses/api-security-fundamentals",
+      "level": "intermediate"
+    },
+    {
+      "name": "AWS Certified Developer – Associate",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-developer-associate",
+      "level": "intermediate"
+    }
+  ],
+  "SDK Developer": [
+    {
+      "name": "Python PCPP – Certified Professional in Python Programming",
+      "provider": "Python Institute",
+      "url": "https://pythoninstitute.org/pcpp1",
+      "level": "intermediate"
+    },
+    {
+      "name": "TypeScript: The Complete Developer's Guide",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/typescript-the-complete-developers-guide",
+      "level": "intermediate"
+    },
+    {
+      "name": "Go: The Complete Developer's Guide (Golang)",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/go-the-complete-developers-guide",
+      "level": "intermediate"
+    },
+    {
+      "name": "Writing Developer Documentation",
+      "provider": "Google Technical Writing Courses",
+      "url": "https://developers.google.com/tech-writing",
+      "level": "beginner"
+    }
+  ],
+  "Technical Lead": [
+    {
+      "name": "Software Architecture & Design of Modern Large Scale Systems",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/software-architect-course-every-software-architect-needs",
+      "level": "advanced"
+    },
+    {
+      "name": "Engineering Management Fundamentals",
+      "provider": "Coursera (University of Virginia)",
+      "url": "https://www.coursera.org/learn/uva-darden-engineering-management",
+      "level": "intermediate"
+    },
+    {
+      "name": "Agile Leadership Specialization",
+      "provider": "Coursera (University of Colorado)",
+      "url": "https://www.coursera.org/specializations/agile-leadership",
+      "level": "intermediate"
+    },
+    {
+      "name": "TOGAF 9 Foundation",
+      "provider": "The Open Group",
+      "url": "https://www.opengroup.org/certifications/togaf",
+      "level": "advanced"
+    }
+  ],
+  "Solutions Architect": [
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-solutions-architect-associate",
+      "level": "intermediate"
+    },
+    {
+      "name": "AWS Certified Solutions Architect – Professional",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-solutions-architect-professional",
+      "level": "advanced"
+    },
+    {
+      "name": "Google Professional Cloud Architect",
+      "provider": "Google Cloud",
+      "url": "https://cloud.google.com/learn/certification/cloud-architect",
+      "level": "advanced"
+    },
+    {
+      "name": "TOGAF 9 Foundation & Practitioner",
+      "provider": "The Open Group",
+      "url": "https://www.opengroup.org/certifications/togaf",
+      "level": "advanced"
+    }
+  ],
+  "Developer Advocate": [
+    {
+      "name": "Technical Writing Courses",
+      "provider": "Google (developers.google.com)",
+      "url": "https://developers.google.com/tech-writing",
+      "level": "beginner"
+    },
+    {
+      "name": "Public Speaking: Become a Confident Speaker",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/public-speaking-become-a-confident-speaker",
+      "level": "beginner"
+    },
+    {
+      "name": "Content Marketing Certification",
+      "provider": "HubSpot Academy",
+      "url": "https://academy.hubspot.com/courses/content-marketing",
+      "level": "beginner"
+    },
+    {
+      "name": "AWS Certified Developer – Associate",
+      "provider": "AWS",
+      "url": "https://aws.amazon.com/certification/certified-developer-associate",
+      "level": "intermediate"
+    }
+  ],
+  "Open Source Engineer": [
+    {
+      "name": "Open Source Software Development Methods",
+      "provider": "Coursera (Linux Foundation)",
+      "url": "https://www.coursera.org/learn/open-source-software-development-methods",
+      "level": "beginner"
+    },
+    {
+      "name": "Git & GitHub Bootcamp",
+      "provider": "Udemy",
+      "url": "https://www.udemy.com/course/git-and-github-bootcamp",
+      "level": "beginner"
+    },
+    {
+      "name": "Linux Kernel Internals and Development",
+      "provider": "Linux Foundation",
+      "url": "https://training.linuxfoundation.org/training/linux-kernel-internals-and-development-lfd420",
+      "level": "advanced"
+    },
+    {
+      "name": "Kubernetes and Cloud Native Associate (KCNA)",
+      "provider": "CNCF / Linux Foundation",
+      "url": "https://training.linuxfoundation.org/certification/kubernetes-cloud-native-associate",
+      "level": "beginner"
+    }
+  ]
+}
