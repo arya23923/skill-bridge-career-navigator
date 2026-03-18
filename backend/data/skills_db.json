@@ -1,0 +1,512 @@
+{
+  "Frontend Developer": {
+    "core_skills": ["HTML", "CSS", "JavaScript", "React", "TypeScript"],
+    "advanced_skills": ["Next.js", "GraphQL", "Jest", "Webpack", "CI/CD", "Redux", "Tailwind CSS"],
+    "project_signals": ["portfolio site", "component library", "e-commerce UI", "dashboard", "landing page"],
+    "roadmap_templates": {
+      "immediate": ["Strengthen JavaScript fundamentals", "Build 2-3 React projects", "Learn responsive CSS"],
+      "short_term": ["Learn TypeScript", "Add testing with Jest", "Deploy on Vercel"],
+      "long_term": ["Master Next.js for SSR", "Learn GraphQL", "Contribute to open source UI libraries"]
+    }
+  },
+  "Backend Developer": {
+    "core_skills": ["Python", "REST APIs", "SQL", "Docker", "Git", "FastAPI", "PostgreSQL"],
+    "advanced_skills": ["Kubernetes", "Redis", "Message Queues", "gRPC", "Microservices", "AWS", "Linux"],
+    "project_signals": ["REST API", "auth system", "database design", "microservice", "web scraper", "CLI tool"],
+    "roadmap_templates": {
+      "immediate": ["Build a REST API with authentication", "Learn SQL and database design", "Containerize apps with Docker"],
+      "short_term": ["Learn Redis for caching", "Implement message queues", "Deploy on AWS"],
+      "long_term": ["Master Kubernetes", "Build microservices architecture", "Learn gRPC"]
+    }
+  },
+  "Full Stack Developer": {
+    "core_skills": ["JavaScript", "React", "Node.js", "SQL", "Git", "HTML", "CSS"],
+    "advanced_skills": ["TypeScript", "Docker", "Redis", "GraphQL", "CI/CD", "Next.js", "PostgreSQL"],
+    "project_signals": ["full stack app", "CRUD app", "real-time app", "SaaS", "social app", "blog platform"],
+    "roadmap_templates": {
+      "immediate": ["Build a full CRUD app with React + Node", "Learn SQL and ORMs", "Version control with Git"],
+      "short_term": ["Add TypeScript to projects", "Implement auth (JWT/OAuth)", "Learn Docker basics"],
+      "long_term": ["Build a production SaaS app", "Master CI/CD pipelines", "Learn GraphQL"]
+    }
+  },
+  "ML Engineer": {
+    "core_skills": ["Python", "TensorFlow", "PyTorch", "Pandas", "Scikit-learn", "NumPy", "Jupyter"],
+    "advanced_skills": ["MLflow", "Kubeflow", "Spark", "CUDA", "Transformers", "FastAPI", "Docker"],
+    "project_signals": ["model training", "data pipeline", "classifier", "NLP project", "image recognition", "recommendation system"],
+    "roadmap_templates": {
+      "immediate": ["Build an end-to-end ML pipeline", "Practice on Kaggle datasets", "Learn data preprocessing with Pandas"],
+      "short_term": ["Deploy a model as a REST API", "Learn MLflow for experiment tracking", "Study transformer architectures"],
+      "long_term": ["Master distributed training", "Contribute to open source ML projects", "Learn Kubeflow"]
+    }
+  },
+  "DevOps Engineer": {
+    "core_skills": ["Docker", "Kubernetes", "CI/CD", "Linux", "Bash", "Git", "Terraform"],
+    "advanced_skills": ["Ansible", "Prometheus", "Grafana", "AWS", "Jenkins", "Helm", "Nginx"],
+    "project_signals": ["deployment pipeline", "infrastructure setup", "monitoring system", "automation script", "container orchestration"],
+    "roadmap_templates": {
+      "immediate": ["Set up a CI/CD pipeline with GitHub Actions", "Containerize an app with Docker", "Learn Linux command line"],
+      "short_term": ["Deploy on Kubernetes", "Set up monitoring with Prometheus + Grafana", "Learn Terraform"],
+      "long_term": ["Master AWS/GCP cloud services", "Implement GitOps workflows", "Learn Helm"]
+    }
+  },
+  "Software Developer": {
+    "core_skills": ["Python", "Java", "Data Structures", "Algorithms", "Git", "SQL", "OOP"],
+    "advanced_skills": ["System Design", "Design Patterns", "CI/CD", "Docker", "REST APIs", "Testing", "Agile"],
+    "project_signals": ["application", "software system", "library", "tool", "automation", "CLI", "open source"],
+    "roadmap_templates": {
+      "immediate": ["Strengthen DSA fundamentals", "Build 3 projects in your primary language", "Practice on LeetCode"],
+      "short_term": ["Learn system design basics", "Study common design patterns", "Contribute to open source"],
+      "long_term": ["Master distributed systems", "Lead a project end to end", "Mentor junior developers"]
+    }
+  },
+  "QA Analyst": {
+    "core_skills": ["Manual Testing", "Selenium", "Test Cases", "Bug Tracking", "SQL", "Postman", "JIRA"],
+    "advanced_skills": ["Cypress", "Playwright", "API Testing", "Performance Testing", "JMeter", "CI/CD", "Python"],
+    "project_signals": ["test suite", "automation framework", "bug report", "test plan", "regression testing", "load testing"],
+    "roadmap_templates": {
+      "immediate": ["Write comprehensive test cases for a real app", "Learn Selenium for web automation", "Practice API testing with Postman"],
+      "short_term": ["Build a Cypress automation framework", "Learn performance testing with JMeter", "Integrate tests into CI/CD"],
+      "long_term": ["Master BDD with Cucumber", "Learn security testing basics", "Build a full automation suite"]
+    }
+  },
+  "AI/ML Engineer": {
+    "core_skills": ["Python", "PyTorch", "TensorFlow", "Scikit-learn", "NumPy", "Pandas", "Mathematics"],
+    "advanced_skills": ["Transformers", "CUDA", "MLflow", "Kubernetes", "Ray", "Triton", "LangChain"],
+    "project_signals": ["model training", "fine-tuning", "LLM", "inference pipeline", "AI application", "neural network", "chatbot"],
+    "roadmap_templates": {
+      "immediate": ["Build and train a neural network from scratch", "Fine-tune a pre-trained model", "Study attention mechanisms"],
+      "short_term": ["Build an LLM-powered application", "Learn model deployment with FastAPI", "Study MLOps practices"],
+      "long_term": ["Contribute to open source AI frameworks", "Research and implement novel architectures", "Master distributed training"]
+    }
+  },
+  "Data Scientist": {
+    "core_skills": ["Python", "Pandas", "NumPy", "Scikit-learn", "SQL", "Statistics", "Matplotlib"],
+    "advanced_skills": ["PyTorch", "TensorFlow", "Spark", "Tableau", "A/B Testing", "Feature Engineering", "MLflow"],
+    "project_signals": ["data analysis", "predictive model", "EDA", "statistical analysis", "visualization", "forecasting", "A/B test"],
+    "roadmap_templates": {
+      "immediate": ["Complete an end-to-end EDA project", "Build a predictive model on a Kaggle dataset", "Learn SQL for data analysis"],
+      "short_term": ["Study statistics and probability deeply", "Learn data visualization with Tableau", "Deploy a model as an API"],
+      "long_term": ["Master advanced ML techniques", "Learn Spark for big data", "Build a real-time analytics pipeline"]
+    }
+  },
+  "Cloud Architect": {
+    "core_skills": ["AWS", "Azure", "GCP", "Terraform", "Kubernetes", "Networking", "Security"],
+    "advanced_skills": ["CDK", "Pulumi", "Service Mesh", "Multi-cloud", "FinOps", "Serverless", "Microservices"],
+    "project_signals": ["cloud architecture", "infrastructure design", "multi-region", "serverless", "cost optimization", "disaster recovery"],
+    "roadmap_templates": {
+      "immediate": ["Get AWS Solutions Architect Associate cert", "Design and deploy a 3-tier cloud architecture", "Learn Terraform for IaC"],
+      "short_term": ["Study cloud security best practices", "Build a multi-region fault-tolerant app", "Learn cost optimization strategies"],
+      "long_term": ["Get AWS Solutions Architect Professional cert", "Master multi-cloud architectures", "Build enterprise-grade solutions"]
+    }
+  },
+  "Cybersecurity Analyst": {
+    "core_skills": ["Network Security", "Linux", "SIEM", "Incident Response", "Firewalls", "Python", "Threat Analysis"],
+    "advanced_skills": ["Penetration Testing", "Malware Analysis", "Forensics", "OSINT", "Metasploit", "Wireshark", "Splunk"],
+    "project_signals": ["security audit", "vulnerability assessment", "incident response", "CTF", "threat hunting", "log analysis"],
+    "roadmap_templates": {
+      "immediate": ["Get CompTIA Security+ certification", "Set up a home lab with Kali Linux", "Practice CTF challenges on HackTheBox"],
+      "short_term": ["Learn SIEM tools like Splunk", "Study network traffic analysis with Wireshark", "Build a vulnerability scanner"],
+      "long_term": ["Get CEH or OSCP certification", "Specialize in cloud security", "Contribute to threat intelligence communities"]
+    }
+  },
+  "Game Developer": {
+    "core_skills": ["Unity", "C#", "Game Physics", "3D Math", "Git", "Game Design", "Unreal Engine"],
+    "advanced_skills": ["Shader Programming", "Multiplayer Networking", "AI Pathfinding", "Optimization", "HLSL", "Blender", "FMOD"],
+    "project_signals": ["game", "2D game", "3D game", "multiplayer", "game jam", "level design", "game mechanic"],
+    "roadmap_templates": {
+      "immediate": ["Build a 2D platformer in Unity", "Learn C# fundamentals", "Complete a game jam project"],
+      "short_term": ["Build a 3D game with physics", "Learn shader programming basics", "Implement pathfinding AI"],
+      "long_term": ["Build a multiplayer game", "Learn Unreal Engine with C++", "Publish a game on Steam or mobile"]
+    }
+  },
+  "Embedded Systems Engineer": {
+    "core_skills": ["C", "C++", "RTOS", "Microcontrollers", "ARM", "UART/SPI/I2C", "Debugging"],
+    "advanced_skills": ["FreeRTOS", "Linux Kernel", "Device Drivers", "FPGA", "Verilog", "Power Management", "CAN Bus"],
+    "project_signals": ["firmware", "microcontroller", "IoT device", "sensor interface", "real-time system", "driver", "embedded Linux"],
+    "roadmap_templates": {
+      "immediate": ["Build a project with Arduino or STM32", "Learn C memory management deeply", "Implement UART communication"],
+      "short_term": ["Work with FreeRTOS for multitasking", "Write a Linux device driver", "Build an IoT device with WiFi"],
+      "long_term": ["Master FPGA development", "Contribute to open source embedded projects", "Learn safety-critical systems"]
+    }
+  },
+  "Android Developer": {
+    "core_skills": ["Kotlin", "Java", "Android SDK", "Jetpack Compose", "XML Layouts", "Git", "REST APIs"],
+    "advanced_skills": ["Coroutines", "Hilt", "Room", "WorkManager", "Firebase", "CI/CD", "Play Store Deployment"],
+    "project_signals": ["Android app", "mobile app", "Play Store", "Kotlin app", "Jetpack", "MVVM", "mobile UI"],
+    "roadmap_templates": {
+      "immediate": ["Build a simple Android app with Kotlin", "Learn Jetpack Compose UI", "Integrate a REST API"],
+      "short_term": ["Implement MVVM architecture", "Use Room for local storage", "Publish an app to Play Store"],
+      "long_term": ["Master Kotlin Coroutines and Flow", "Build a production-grade app", "Learn KMM for cross-platform"]
+    }
+  },
+  "iOS Developer": {
+    "core_skills": ["Swift", "SwiftUI", "UIKit", "Xcode", "Git", "REST APIs", "Core Data"],
+    "advanced_skills": ["Combine", "Swift Concurrency", "ARKit", "Core ML", "Firebase", "TestFlight", "CI/CD"],
+    "project_signals": ["iOS app", "SwiftUI app", "App Store", "Swift app", "iPhone app", "mobile UI", "Xcode project"],
+    "roadmap_templates": {
+      "immediate": ["Build a SwiftUI app from scratch", "Learn Swift fundamentals deeply", "Integrate a REST API with URLSession"],
+      "short_term": ["Learn Combine for reactive programming", "Implement Core Data for persistence", "Submit an app to TestFlight"],
+      "long_term": ["Master Swift Concurrency", "Build an AR app with ARKit", "Publish to the App Store"]
+    }
+  },
+  "Blockchain Developer": {
+    "core_skills": ["Solidity", "Ethereum", "Web3.js", "Smart Contracts", "JavaScript", "Git", "Cryptography"],
+    "advanced_skills": ["Hardhat", "Foundry", "IPFS", "DeFi Protocols", "Layer 2", "Rust", "Chainlink"],
+    "project_signals": ["smart contract", "DApp", "token", "NFT", "DeFi protocol", "DAO", "blockchain app"],
+    "roadmap_templates": {
+      "immediate": ["Write and deploy a simple Solidity smart contract", "Learn Ethereum fundamentals", "Build a basic DApp with Web3.js"],
+      "short_term": ["Build a DeFi protocol clone", "Learn security auditing for smart contracts", "Deploy on a testnet"],
+      "long_term": ["Master Layer 2 scaling solutions", "Contribute to a major DeFi protocol", "Learn cross-chain development"]
+    }
+  },
+  "Smart Contract Developer": {
+    "core_skills": ["Solidity", "Ethereum", "Hardhat", "OpenZeppelin", "Web3.js", "JavaScript", "Security Auditing"],
+    "advanced_skills": ["Foundry", "Vyper", "Formal Verification", "Gas Optimization", "EVM", "Chainlink", "Layer 2"],
+    "project_signals": ["smart contract", "ERC-20", "ERC-721", "DeFi", "DAO", "gas optimization", "audit"],
+    "roadmap_templates": {
+      "immediate": ["Deploy ERC-20 and ERC-721 contracts", "Learn OpenZeppelin libraries", "Write unit tests with Hardhat"],
+      "short_term": ["Audit contracts for common vulnerabilities", "Learn gas optimization techniques", "Build a DeFi application"],
+      "long_term": ["Master formal verification", "Contribute to protocol security audits", "Learn Vyper as an alternative"]
+    }
+  },
+  "Web3 Developer": {
+    "core_skills": ["JavaScript", "TypeScript", "React", "Solidity", "Web3.js", "Ethers.js", "Wallet Integration"],
+    "advanced_skills": ["IPFS", "The Graph", "Hardhat", "NFT Standards", "DeFi", "Layer 2", "MetaMask SDK"],
+    "project_signals": ["DApp", "NFT marketplace", "Web3 app", "wallet connect", "token integration", "blockchain frontend", "DAO interface"],
+    "roadmap_templates": {
+      "immediate": ["Build a DApp frontend with React + Ethers.js", "Integrate MetaMask wallet", "Deploy to a testnet"],
+      "short_term": ["Build an NFT minting site", "Learn The Graph for blockchain data", "Integrate IPFS for storage"],
+      "long_term": ["Build a full DeFi frontend", "Master cross-chain interactions", "Contribute to Web3 open source"]
+    }
+  },
+  "AR/VR Developer": {
+    "core_skills": ["Unity", "C#", "ARKit", "ARCore", "OpenXR", "3D Math", "Git"],
+    "advanced_skills": ["Unreal Engine", "Shader Programming", "Spatial Audio", "Hand Tracking", "WebXR", "Blender", "Physics Simulation"],
+    "project_signals": ["AR app", "VR experience", "mixed reality", "spatial computing", "immersive app", "3D interaction", "headset"],
+    "roadmap_templates": {
+      "immediate": ["Build an AR app with ARKit or ARCore", "Learn Unity XR Toolkit", "Create a basic VR scene"],
+      "short_term": ["Build a hand-tracking interaction system", "Learn spatial audio design", "Publish to Meta Quest or App Store"],
+      "long_term": ["Master Unreal Engine for VR", "Contribute to WebXR standards", "Build a full immersive experience"]
+    }
+  },
+  "Desktop Application Developer": {
+    "core_skills": ["C++", "Qt", "Python", "Electron", "Git", "UI Design", "Cross-platform"],
+    "advanced_skills": ["Rust", "wxWidgets", "WPF", ".NET", "Performance Optimization", "Auto-update", "CI/CD"],
+    "project_signals": ["desktop app", "GUI application", "cross-platform app", "native app", "productivity tool", "installer", "system tray"],
+    "roadmap_templates": {
+      "immediate": ["Build a desktop app with Electron or Qt", "Learn UI/UX for desktop", "Package and distribute the app"],
+      "short_term": ["Add auto-update functionality", "Learn native OS integrations", "Implement cross-platform CI/CD"],
+      "long_term": ["Build a commercial-quality desktop app", "Learn Rust for performance-critical apps", "Explore Tauri as a modern alternative"]
+    }
+  },
+  "Systems Programmer": {
+    "core_skills": ["C", "C++", "Rust", "Linux", "Memory Management", "Concurrency", "Assembly"],
+    "advanced_skills": ["LLVM", "Kernel Development", "IPC", "Lock-free Programming", "Profiling", "Valgrind", "eBPF"],
+    "project_signals": ["system utility", "kernel module", "memory allocator", "scheduler", "IPC system", "daemon", "performance tool"],
+    "roadmap_templates": {
+      "immediate": ["Build a memory allocator in C", "Learn Linux system calls", "Write a multithreaded program with pthreads"],
+      "short_term": ["Implement a basic shell", "Learn lock-free data structures", "Write a Linux kernel module"],
+      "long_term": ["Contribute to Linux kernel or LLVM", "Master eBPF for observability", "Build a custom runtime or scheduler"]
+    }
+  },
+  "Compiler Engineer": {
+    "core_skills": ["C++", "LLVM", "Lexing/Parsing", "AST", "IR Generation", "Optimization Passes", "Type Systems"],
+    "advanced_skills": ["MLIR", "JIT Compilation", "Register Allocation", "SSA Form", "GC Design", "Language Design", "Formal Semantics"],
+    "project_signals": ["compiler", "language", "parser", "interpreter", "LLVM backend", "code generation", "type checker"],
+    "roadmap_templates": {
+      "immediate": ["Build a simple interpreter for a toy language", "Learn LLVM IR basics", "Implement a recursive descent parser"],
+      "short_term": ["Add type checking to your language", "Generate LLVM IR from your AST", "Implement basic optimizations"],
+      "long_term": ["Contribute to LLVM or GCC", "Design a new programming language", "Master register allocation algorithms"]
+    }
+  },
+  "Graphics Engineer": {
+    "core_skills": ["C++", "OpenGL", "Vulkan", "GLSL", "3D Math", "Linear Algebra", "GPU Architecture"],
+    "advanced_skills": ["DirectX 12", "Metal", "Ray Tracing", "PBR", "Post-processing", "WebGPU", "Compute Shaders"],
+    "project_signals": ["renderer", "shader", "graphics engine", "ray tracer", "rasterizer", "visual effect", "GPU compute"],
+    "roadmap_templates": {
+      "immediate": ["Build a software rasterizer from scratch", "Learn OpenGL fundamentals", "Implement Phong shading"],
+      "short_term": ["Build a physically-based renderer", "Learn Vulkan for modern GPU programming", "Implement shadow mapping"],
+      "long_term": ["Implement a real-time ray tracer", "Master compute shaders", "Contribute to a graphics engine"]
+    }
+  },
+  "Audio Engineer": {
+    "core_skills": ["C++", "DSP", "JUCE", "Audio APIs", "Signal Processing", "Music Theory", "Python"],
+    "advanced_skills": ["VST Plugin Development", "Spatial Audio", "FMOD", "Wwise", "Machine Learning for Audio", "WebAudio", "Real-time Systems"],
+    "project_signals": ["audio plugin", "synthesizer", "audio effect", "DAW integration", "real-time audio", "spatial audio", "audio analysis"],
+    "roadmap_templates": {
+      "immediate": ["Build a basic audio effect with JUCE", "Learn DSP fundamentals (filters, FFT)", "Create a simple synthesizer"],
+      "short_term": ["Build and publish a VST plugin", "Learn spatial audio techniques", "Integrate FMOD in a game"],
+      "long_term": ["Contribute to open source audio tools", "Apply ML to audio synthesis", "Build a complete DAW plugin suite"]
+    }
+  },
+  "Firmware Engineer": {
+    "core_skills": ["C", "C++", "ARM Cortex", "RTOS", "Bootloaders", "JTAG/SWD", "Linker Scripts"],
+    "advanced_skills": ["FreeRTOS", "Zephyr RTOS", "DFU", "Power Management", "BLE", "Secure Boot", "HAL"],
+    "project_signals": ["firmware", "bootloader", "OTA update", "BLE device", "power optimization", "peripheral driver", "embedded OS"],
+    "roadmap_templates": {
+      "immediate": ["Write a bare-metal firmware for STM32", "Implement a UART bootloader", "Learn JTAG debugging"],
+      "short_term": ["Add FreeRTOS to a project", "Implement OTA firmware update", "Optimize power consumption on a device"],
+      "long_term": ["Master Zephyr RTOS", "Implement secure boot", "Contribute to open source firmware projects"]
+    }
+  },
+  "Data Engineer": {
+    "core_skills": ["Python", "SQL", "Apache Spark", "Airflow", "ETL", "Data Warehousing", "Git"],
+    "advanced_skills": ["Kafka", "dbt", "Snowflake", "BigQuery", "Delta Lake", "Flink", "Kubernetes"],
+    "project_signals": ["data pipeline", "ETL pipeline", "data warehouse", "streaming pipeline", "data lake", "batch processing", "orchestration"],
+    "roadmap_templates": {
+      "immediate": ["Build an ETL pipeline with Python + Airflow", "Learn SQL window functions deeply", "Set up a data warehouse on Snowflake"],
+      "short_term": ["Build a real-time streaming pipeline with Kafka", "Learn dbt for data transformation", "Implement data quality checks"],
+      "long_term": ["Master Apache Spark for large-scale processing", "Build a lakehouse architecture", "Learn Flink for stream processing"]
+    }
+  },
+  "Data Analyst": {
+    "core_skills": ["SQL", "Python", "Excel", "Tableau", "Power BI", "Statistics", "Pandas"],
+    "advanced_skills": ["R", "Looker", "dbt", "A/B Testing", "Data Storytelling", "Spark", "Airflow"],
+    "project_signals": ["dashboard", "data analysis", "report", "visualization", "KPI tracking", "cohort analysis", "business insights"],
+    "roadmap_templates": {
+      "immediate": ["Build a business dashboard in Tableau", "Learn advanced SQL (CTEs, window functions)", "Complete an end-to-end analysis project"],
+      "short_term": ["Learn Python for data analysis", "Study A/B testing methodology", "Build an automated reporting pipeline"],
+      "long_term": ["Master data storytelling", "Learn dbt for analytics engineering", "Build a self-serve analytics platform"]
+    }
+  },
+  "MLOps Engineer": {
+    "core_skills": ["Python", "Docker", "Kubernetes", "MLflow", "CI/CD", "Cloud (AWS/GCP)", "Git"],
+    "advanced_skills": ["Kubeflow", "Seldon", "BentoML", "Feature Store", "Data Versioning", "Model Monitoring", "Terraform"],
+    "project_signals": ["ML pipeline", "model deployment", "model monitoring", "feature store", "training pipeline", "experiment tracking", "serving infrastructure"],
+    "roadmap_templates": {
+      "immediate": ["Set up MLflow for experiment tracking", "Containerize an ML model with Docker", "Build a training pipeline with CI/CD"],
+      "short_term": ["Deploy a model to Kubernetes with Seldon", "Implement model monitoring", "Build a feature store"],
+      "long_term": ["Master Kubeflow Pipelines", "Build an end-to-end ML platform", "Implement data and model versioning at scale"]
+    }
+  },
+  "NLP Engineer": {
+    "core_skills": ["Python", "Transformers", "spaCy", "NLTK", "PyTorch", "Hugging Face", "SQL"],
+    "advanced_skills": ["Fine-tuning LLMs", "RAG", "LangChain", "Vector Databases", "ONNX", "Triton", "Knowledge Graphs"],
+    "project_signals": ["NLP pipeline", "text classification", "named entity recognition", "chatbot", "summarization", "sentiment analysis", "RAG system"],
+    "roadmap_templates": {
+      "immediate": ["Build a text classification model with Hugging Face", "Learn tokenization and embeddings", "Implement a sentiment analysis pipeline"],
+      "short_term": ["Fine-tune a BERT model", "Build a RAG-based chatbot", "Learn vector databases"],
+      "long_term": ["Fine-tune large language models", "Build a production NLP service", "Contribute to Hugging Face ecosystem"]
+    }
+  },
+  "Computer Vision Engineer": {
+    "core_skills": ["Python", "OpenCV", "PyTorch", "TensorFlow", "CNNs", "NumPy", "Image Processing"],
+    "advanced_skills": ["YOLO", "Detectron2", "TensorRT", "ONNX", "3D Vision", "GANs", "Diffusion Models"],
+    "project_signals": ["object detection", "image classification", "segmentation", "face recognition", "video analysis", "OCR", "autonomous system"],
+    "roadmap_templates": {
+      "immediate": ["Build an image classifier with PyTorch", "Learn OpenCV for image processing", "Implement a basic object detector"],
+      "short_term": ["Train a YOLO model on a custom dataset", "Deploy a CV model as an API", "Learn TensorRT for inference optimization"],
+      "long_term": ["Build a real-time video analysis system", "Explore 3D vision and depth estimation", "Contribute to open source CV frameworks"]
+    }
+  },
+  "AI Research Engineer": {
+    "core_skills": ["Python", "PyTorch", "Mathematics", "Research Papers", "CUDA", "Transformers", "Experimentation"],
+    "advanced_skills": ["JAX", "Triton", "Distributed Training", "RLHF", "Custom CUDA Kernels", "Benchmarking", "Paper Writing"],
+    "project_signals": ["novel architecture", "research implementation", "benchmark", "ablation study", "paper reproduction", "model scaling", "training optimization"],
+    "roadmap_templates": {
+      "immediate": ["Reproduce a recent research paper", "Implement a transformer from scratch", "Learn CUDA programming basics"],
+      "short_term": ["Run distributed training experiments", "Contribute to an open source research project", "Learn JAX for accelerated research"],
+      "long_term": ["Publish original research", "Master custom CUDA kernel writing", "Contribute to frontier model development"]
+    }
+  },
+  "Business Intelligence Developer": {
+    "core_skills": ["SQL", "Power BI", "Tableau", "Data Modeling", "Excel", "ETL", "DAX"],
+    "advanced_skills": ["Looker", "dbt", "Python", "SSAS", "Data Warehouse Design", "Snowflake", "MDX"],
+    "project_signals": ["BI dashboard", "data model", "executive report", "KPI system", "data mart", "self-serve analytics", "scheduled report"],
+    "roadmap_templates": {
+      "immediate": ["Build a multi-page Power BI or Tableau dashboard", "Learn star schema data modeling", "Master DAX for calculated measures"],
+      "short_term": ["Design a data warehouse from scratch", "Learn dbt for BI transformations", "Build a self-serve reporting tool"],
+      "long_term": ["Implement an enterprise BI platform", "Master advanced data modeling", "Learn ML integration in BI tools"]
+    }
+  },
+  "Analytics Engineer": {
+    "core_skills": ["SQL", "dbt", "Python", "Data Modeling", "Git", "Snowflake/BigQuery", "Testing"],
+    "advanced_skills": ["Airflow", "Spark", "Looker LookML", "Data Contracts", "Semantic Layer", "dbt Cloud", "Metabase"],
+    "project_signals": ["dbt project", "data model", "analytics pipeline", "metrics layer", "data documentation", "data testing", "semantic model"],
+    "roadmap_templates": {
+      "immediate": ["Build a dbt project with staging and mart layers", "Learn SQL window functions and CTEs", "Implement data tests in dbt"],
+      "short_term": ["Design a production dbt project", "Learn Semantic Layer concepts", "Implement CI/CD for dbt"],
+      "long_term": ["Build a full analytics engineering platform", "Master data contracts", "Contribute to dbt open source packages"]
+    }
+  },
+  "Site Reliability Engineer": {
+    "core_skills": ["Linux", "Python", "Kubernetes", "Prometheus", "Grafana", "CI/CD", "Incident Response"],
+    "advanced_skills": ["Terraform", "Ansible", "SLO/SLA", "Chaos Engineering", "Distributed Tracing", "Jaeger", "OpenTelemetry"],
+    "project_signals": ["reliability system", "monitoring setup", "incident playbook", "SLO dashboard", "chaos experiment", "runbook", "on-call system"],
+    "roadmap_templates": {
+      "immediate": ["Set up monitoring with Prometheus + Grafana", "Write incident response runbooks", "Define and track SLOs for a service"],
+      "short_term": ["Learn chaos engineering with Chaos Monkey", "Implement distributed tracing with Jaeger", "Build automated remediation scripts"],
+      "long_term": ["Master OpenTelemetry for observability", "Build a chaos engineering platform", "Lead reliability improvements across an org"]
+    }
+  },
+  "Platform Engineer": {
+    "core_skills": ["Kubernetes", "Terraform", "CI/CD", "Docker", "Python", "Helm", "Cloud (AWS/GCP/Azure)"],
+    "advanced_skills": ["Service Mesh (Istio)", "GitOps (ArgoCD)", "Internal Developer Platform", "Backstage", "Crossplane", "eBPF", "Platform APIs"],
+    "project_signals": ["developer platform", "internal tooling", "golden path", "service catalog", "self-service infrastructure", "platform API", "developer experience"],
+    "roadmap_templates": {
+      "immediate": ["Build an internal developer platform with Backstage", "Set up GitOps with ArgoCD", "Create Helm charts for standard services"],
+      "short_term": ["Implement a service mesh with Istio", "Build self-service infrastructure with Crossplane", "Create golden path templates"],
+      "long_term": ["Build a full internal developer platform", "Implement platform engineering metrics", "Open source your platform tooling"]
+    }
+  },
+  "Infrastructure Engineer": {
+    "core_skills": ["Terraform", "AWS/GCP/Azure", "Linux", "Docker", "Networking", "Python", "Bash"],
+    "advanced_skills": ["Pulumi", "Ansible", "CDK", "Service Mesh", "Cost Optimization", "Multi-cloud", "Vault"],
+    "project_signals": ["infrastructure as code", "cloud setup", "network design", "cost optimization", "multi-region deployment", "VPC setup", "secrets management"],
+    "roadmap_templates": {
+      "immediate": ["Provision a full AWS environment with Terraform", "Learn VPC and networking fundamentals", "Automate server config with Ansible"],
+      "short_term": ["Implement secrets management with Vault", "Learn cost optimization strategies", "Build a multi-region infrastructure"],
+      "long_term": ["Master multi-cloud architectures", "Implement FinOps practices", "Build a fully automated infrastructure platform"]
+    }
+  },
+  "Database Administrator": {
+    "core_skills": ["PostgreSQL", "MySQL", "SQL", "Backup & Recovery", "Performance Tuning", "Indexing", "Security"],
+    "advanced_skills": ["Oracle", "MongoDB", "Redis", "Replication", "Partitioning", "Query Optimization", "High Availability"],
+    "project_signals": ["database optimization", "replication setup", "backup system", "performance tuning", "migration", "high availability", "query optimization"],
+    "roadmap_templates": {
+      "immediate": ["Set up PostgreSQL replication", "Learn query optimization with EXPLAIN", "Implement automated backup and recovery"],
+      "short_term": ["Design a high-availability database cluster", "Learn partitioning for large tables", "Implement database security hardening"],
+      "long_term": ["Master Oracle or advanced enterprise databases", "Build a database-as-a-service platform", "Learn distributed database systems"]
+    }
+  },
+  "Network Engineer": {
+    "core_skills": ["TCP/IP", "Routing & Switching", "Cisco IOS", "Firewalls", "VPN", "DNS", "Linux"],
+    "advanced_skills": ["BGP", "OSPF", "SDN", "Network Automation (Python/Ansible)", "Wireshark", "Load Balancing", "IPv6"],
+    "project_signals": ["network design", "routing configuration", "firewall setup", "VPN deployment", "network automation", "traffic analysis", "SDN implementation"],
+    "roadmap_templates": {
+      "immediate": ["Get CCNA certification", "Build a network simulation with GNS3 or Packet Tracer", "Learn BGP and OSPF routing"],
+      "short_term": ["Automate network config with Python + Netmiko", "Learn SDN concepts", "Set up a firewall and VPN"],
+      "long_term": ["Get CCNP or equivalent", "Master network automation at scale", "Learn cloud networking"]
+    }
+  },
+  "Linux Systems Administrator": {
+    "core_skills": ["Linux", "Bash", "Networking", "File Systems", "User Management", "Cron", "SSH"],
+    "advanced_skills": ["Ansible", "Puppet", "Systemd", "LVM", "SELinux", "Performance Tuning", "Kernel Tuning"],
+    "project_signals": ["server setup", "automation script", "system hardening", "log management", "backup system", "monitoring setup", "service configuration"],
+    "roadmap_templates": {
+      "immediate": ["Set up and harden a Linux server from scratch", "Write bash automation scripts", "Learn systemd service management"],
+      "short_term": ["Automate configuration with Ansible", "Implement centralized logging with ELK", "Learn LVM and storage management"],
+      "long_term": ["Get RHCSA/RHCE certification", "Master kernel tuning and performance", "Build a large-scale server automation framework"]
+    }
+  },
+  "Penetration Tester": {
+    "core_skills": ["Kali Linux", "Metasploit", "Burp Suite", "Nmap", "Python", "Networking", "OWASP Top 10"],
+    "advanced_skills": ["Exploit Development", "Reverse Engineering", "Active Directory Attacks", "Malware Analysis", "Red Teaming", "OSCP", "C/C++"],
+    "project_signals": ["CTF", "vulnerability report", "penetration test", "exploit", "red team exercise", "web app pentest", "network pentest"],
+    "roadmap_templates": {
+      "immediate": ["Practice CTFs on HackTheBox and TryHackMe", "Learn web app testing with Burp Suite", "Study OWASP Top 10 vulnerabilities"],
+      "short_term": ["Get OSCP certification", "Learn Active Directory attack techniques", "Build a home lab for practice"],
+      "long_term": ["Master exploit development", "Specialize in red team operations", "Contribute to CVE research"]
+    }
+  },
+  "Security Engineer": {
+    "core_skills": ["Python", "Linux", "Networking", "SIEM", "IAM", "Cryptography", "Cloud Security"],
+    "advanced_skills": ["Terraform (security)", "Zero Trust", "Threat Modeling", "SOAR", "Security Automation", "Kubernetes Security", "DevSecOps"],
+    "project_signals": ["security tool", "threat model", "security automation", "IAM system", "vulnerability scanner", "SIEM integration", "zero trust implementation"],
+    "roadmap_templates": {
+      "immediate": ["Learn threat modeling with STRIDE", "Build a security automation script", "Study cloud security fundamentals"],
+      "short_term": ["Implement a zero trust network", "Build a SIEM integration", "Get AWS Security Specialty cert"],
+      "long_term": ["Master DevSecOps practices", "Build a security operations platform", "Contribute to open source security tools"]
+    }
+  },
+  "Application Security Engineer": {
+    "core_skills": ["OWASP Top 10", "Secure Code Review", "SAST/DAST", "Python", "Burp Suite", "Threat Modeling", "CI/CD Security"],
+    "advanced_skills": ["Fuzzing", "Binary Analysis", "AppSec Automation", "SBOM", "Dependency Scanning", "Secrets Detection", "SDL"],
+    "project_signals": ["security review", "SAST integration", "vulnerability fix", "security pipeline", "code audit", "dependency audit", "secure SDLC"],
+    "roadmap_templates": {
+      "immediate": ["Integrate SAST tools into a CI/CD pipeline", "Perform a code review for OWASP Top 10", "Learn secrets detection tools"],
+      "short_term": ["Build an application security testing framework", "Learn dependency scanning and SBOMs", "Automate security checks in CI/CD"],
+      "long_term": ["Build a full AppSec program", "Master binary analysis and fuzzing", "Lead secure SDLC adoption across an org"]
+    }
+  },
+  "UI Engineer": {
+    "core_skills": ["HTML", "CSS", "JavaScript", "React", "TypeScript", "Design Systems", "Accessibility"],
+    "advanced_skills": ["Storybook", "CSS-in-JS", "Animation (Framer Motion)", "Web Components", "Performance", "Design Tokens", "Figma"],
+    "project_signals": ["UI component", "design system", "accessible component", "Storybook", "animation", "interactive UI", "responsive layout"],
+    "roadmap_templates": {
+      "immediate": ["Build a component library with Storybook", "Learn WCAG accessibility guidelines", "Master CSS animations and transitions"],
+      "short_term": ["Implement a full design system", "Learn Framer Motion for advanced animation", "Build accessible form components"],
+      "long_term": ["Lead a design system for a product team", "Master Web Components", "Contribute to major UI frameworks"]
+    }
+  },
+  "UX Engineer": {
+    "core_skills": ["HTML", "CSS", "JavaScript", "React", "Figma", "Prototyping", "User Research"],
+    "advanced_skills": ["Usability Testing", "Interaction Design", "Design Systems", "A/B Testing", "Analytics", "Motion Design", "Accessibility"],
+    "project_signals": ["prototype", "user flow", "usability test", "interaction design", "responsive design", "design handoff", "user research"],
+    "roadmap_templates": {
+      "immediate": ["Build high-fidelity prototypes in Figma", "Conduct a usability test on a real product", "Implement a user flow end-to-end in code"],
+      "short_term": ["Run A/B tests and analyze results", "Learn advanced interaction design patterns", "Bridge design and dev with a design system"],
+      "long_term": ["Lead UX research for a product", "Build a full design-to-code workflow", "Contribute to accessibility standards"]
+    }
+  },
+  "Design Systems Engineer": {
+    "core_skills": ["React", "TypeScript", "CSS", "Storybook", "Design Tokens", "Accessibility", "Figma"],
+    "advanced_skills": ["Web Components", "Style Dictionary", "Chromatic", "Theming", "CSS Variables", "Documentation", "Monorepo"],
+    "project_signals": ["design system", "component library", "design tokens", "Storybook", "theming system", "accessible components", "npm package"],
+    "roadmap_templates": {
+      "immediate": ["Build and publish a component library to npm", "Set up Storybook with accessibility checks", "Implement design tokens with Style Dictionary"],
+      "short_term": ["Add visual regression testing with Chromatic", "Build a theming system with CSS variables", "Create comprehensive component documentation"],
+      "long_term": ["Lead an enterprise design system", "Build a cross-framework component system", "Contribute to open source design systems"]
+    }
+  },
+  "API Developer": {
+    "core_skills": ["REST", "Python/Node.js", "OpenAPI/Swagger", "Authentication (OAuth/JWT)", "SQL", "Git", "Docker"],
+    "advanced_skills": ["GraphQL", "gRPC", "Rate Limiting", "API Versioning", "Webhooks", "SDK Generation", "API Gateway"],
+    "project_signals": ["REST API", "API documentation", "GraphQL API", "API gateway", "webhook system", "SDK", "API versioning"],
+    "roadmap_templates": {
+      "immediate": ["Build a well-documented REST API with OpenAPI", "Implement OAuth2 authentication", "Add rate limiting and error handling"],
+      "short_term": ["Build a GraphQL API", "Implement API versioning strategy", "Create a webhook delivery system"],
+      "long_term": ["Design a public API platform", "Build an API gateway", "Auto-generate SDKs from OpenAPI specs"]
+    }
+  },
+  "SDK Developer": {
+    "core_skills": ["Python", "JavaScript", "Java", "REST APIs", "Git", "Documentation", "Testing"],
+    "advanced_skills": ["Go", "Rust", "Package Publishing", "Semantic Versioning", "CI/CD", "Code Generation", "Developer Experience"],
+    "project_signals": ["SDK", "client library", "npm package", "PyPI package", "API wrapper", "developer tool", "code generation"],
+    "roadmap_templates": {
+      "immediate": ["Build an SDK wrapper for a public API", "Publish a package to npm or PyPI", "Write comprehensive SDK documentation"],
+      "short_term": ["Add SDK testing and CI/CD automation", "Learn semantic versioning and changelogs", "Build SDK for multiple languages"],
+      "long_term": ["Design a world-class developer experience", "Auto-generate SDKs from API specs", "Lead SDK strategy for a platform"]
+    }
+  },
+  "Technical Lead": {
+    "core_skills": ["System Design", "Code Review", "Mentoring", "Agile", "Architecture", "Communication", "Git"],
+    "advanced_skills": ["Technical Strategy", "Cross-team Collaboration", "Performance Management", "RFC Writing", "Roadmap Planning", "Risk Management", "Documentation"],
+    "project_signals": ["technical design", "architecture document", "RFC", "code review", "team mentoring", "technical decision", "system migration"],
+    "roadmap_templates": {
+      "immediate": ["Write a technical design document for a system", "Lead code reviews and provide constructive feedback", "Mentor a junior developer on a project"],
+      "short_term": ["Drive a technical migration or refactor", "Write RFCs for major technical decisions", "Lead sprint planning and backlog refinement"],
+      "long_term": ["Define technical strategy for a team", "Build engineering culture and best practices", "Lead cross-team architectural decisions"]
+    }
+  },
+  "Solutions Architect": {
+    "core_skills": ["AWS/Azure/GCP", "System Design", "Networking", "Security", "Databases", "Microservices", "Communication"],
+    "advanced_skills": ["Enterprise Architecture", "Cost Optimization", "Migration Strategy", "Well-Architected Framework", "Multi-cloud", "Compliance", "Presales"],
+    "project_signals": ["architecture diagram", "solution design", "cloud migration", "cost analysis", "reference architecture", "proof of concept", "enterprise solution"],
+    "roadmap_templates": {
+      "immediate": ["Get AWS Solutions Architect Associate cert", "Design a 3-tier architecture for a real use case", "Study the AWS Well-Architected Framework"],
+      "short_term": ["Build a cloud migration plan", "Learn enterprise architecture frameworks", "Design a multi-region solution"],
+      "long_term": ["Get AWS Solutions Architect Professional", "Master cost optimization at enterprise scale", "Lead digital transformation projects"]
+    }
+  },
+  "Developer Advocate": {
+    "core_skills": ["Public Speaking", "Technical Writing", "APIs", "Python/JavaScript", "Community Building", "Git", "Documentation"],
+    "advanced_skills": ["Content Creation", "Demo Building", "SDK Usage", "Workshop Facilitation", "Social Media", "Open Source", "Feedback Collection"],
+    "project_signals": ["blog post", "talk", "demo app", "tutorial", "workshop", "open source contribution", "community project"],
+    "roadmap_templates": {
+      "immediate": ["Write 3 technical blog posts", "Build a compelling demo app using the product", "Give a lightning talk at a local meetup"],
+      "short_term": ["Submit to a major conference", "Build a tutorial series on YouTube or Dev.to", "Engage actively in developer communities"],
+      "long_term": ["Speak at major conferences (KubeCon, PyCon)", "Build and lead a developer community", "Drive product improvements from developer feedback"]
+    }
+  },
+  "Open Source Engineer": {
+    "core_skills": ["Git", "GitHub", "Python/JavaScript/Go", "Code Review", "Documentation", "Testing", "CI/CD"],
+    "advanced_skills": ["Release Management", "Community Governance", "RFC Process", "Changelog Management", "Security Disclosure", "Contribution Guidelines", "OSS Licensing"],
+    "project_signals": ["open source project", "contribution", "pull request", "issue triage", "release", "community RFC", "project maintainer"],
+    "roadmap_templates": {
+      "immediate": ["Make 5 meaningful contributions to open source projects", "Write a CONTRIBUTING.md for your own project", "Triage issues on a popular open source repo"],
+      "short_term": ["Become a regular contributor to a major project", "Learn OSS governance and licensing", "Start your own open source project"],
+      "long_term": ["Become a maintainer of a major open source project", "Build an open source community", "Drive the technical roadmap of an OSS project"]
+    }
+  }
+}
