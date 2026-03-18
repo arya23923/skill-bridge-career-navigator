@@ -10,70 +10,23 @@ from services.scorer import score_profile
 router = APIRouter()
 
 VALID_ROLES = [
-    "Frontend Developer",
-    "Backend Developer",
-    "Full Stack Developer",
-    "ML Engineer",
-    "DevOps Engineer",
-    "Software Developer",
-    "QA Analyst",
-    "AI/ML Engineer",
-    "Data Scientist",
-    "Cloud Architect",
-    "Cybersecurity Analyst",
-    "Game Developer",
-    "Embedded Systems Engineer",
-    "Android Developer",
-    "iOS Developer",
-
-    # Engineering
-    "Blockchain Developer",
-    "Smart Contract Developer",
-    "Web3 Developer",
-    "AR/VR Developer",
-    "Desktop Application Developer",
-    "Systems Programmer",
-    "Compiler Engineer",
-    "Graphics Engineer",
-    "Audio Engineer",
-    "Firmware Engineer",
-
-    # Data & AI
-    "Data Engineer",
-    "Data Analyst",
-    "MLOps Engineer",
-    "NLP Engineer",
-    "Computer Vision Engineer",
-    "AI Research Engineer",
-    "Business Intelligence Developer",
-    "Analytics Engineer",
-
-    # Infrastructure & Ops
-    "Site Reliability Engineer",
-    "Platform Engineer",
-    "Infrastructure Engineer",
-    "Database Administrator",
-    "Network Engineer",
-    "Linux Systems Administrator",
-
-    # Security
-    "Penetration Tester",
-    "Security Engineer",
-    "Application Security Engineer",
-
-    # Product & Design
-    "UI Engineer",
-    "UX Engineer",
-    "Design Systems Engineer",
-
-    # Specialized
-    "API Developer",
-    "SDK Developer",
-    "Technical Lead",
-    "Solutions Architect",
-    "Developer Advocate",
-    "Open Source Engineer",
+    "Frontend Developer", "Backend Developer", "Full Stack Developer",
+    "ML Engineer", "DevOps Engineer", "Software Developer", "QA Analyst",
+    "AI/ML Engineer", "Data Scientist", "Cloud Architect", "Cybersecurity Analyst",
+    "Game Developer", "Embedded Systems Engineer", "Android Developer", "iOS Developer",
+    "Blockchain Developer", "Smart Contract Developer", "Web3 Developer",
+    "AR/VR Developer", "Desktop Application Developer", "Systems Programmer",
+    "Compiler Engineer", "Graphics Engineer", "Audio Engineer", "Firmware Engineer",
+    "Data Engineer", "Data Analyst", "MLOps Engineer", "NLP Engineer",
+    "Computer Vision Engineer", "AI Research Engineer", "Business Intelligence Developer",
+    "Analytics Engineer", "Site Reliability Engineer", "Platform Engineer",
+    "Infrastructure Engineer", "Database Administrator", "Network Engineer",
+    "Linux Systems Administrator", "Penetration Tester", "Security Engineer",
+    "Application Security Engineer", "UI Engineer", "UX Engineer",
+    "Design Systems Engineer", "API Developer", "SDK Developer",
+    "Technical Lead", "Solutions Architect", "Developer Advocate", "Open Source Engineer",
 ]
+
 
 @router.post("/analyze", response_model=AnalysisResponse)
 async def analyze_resume(
