@@ -30,7 +30,7 @@ function DonutChart({ value, color, label }: { value: number; color: string; lab
           {value}
         </text>
       </svg>
-      <span className="text-[11px] text-gray-400 text-center leading-tight max-w-[68px]">{label}</span>
+      <span className="text-[11px] text-gray-400 text-center leading-tight max-w-17">{label}</span>
     </div>
   )
 }

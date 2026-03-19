@@ -67,7 +67,7 @@ export default function UploadForm({ onSubmit, loading, error }: Props) {
   return (
     <div className=" bg-gray-900 text-w flex items-center justify-center px-5 py-10">
       <div className="w-full flex flex-col gap-4">
-        <p className="text-sm text-white text-lg -mt-1">
+        <p className="text-lg text-white font-bold -mt-1">
           Drop your resume, pick your target role — we'll show you exactly what's missing and how to get there.
         </p>
 
