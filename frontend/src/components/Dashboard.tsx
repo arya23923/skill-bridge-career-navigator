@@ -1,247 +1,306 @@
-import { useState, useRef, useEffect } from "react";
-import type { AnalysisResult, CareerPath, Message } from "../types";
-import { chatWithAdvisor } from "../api/clients";
+import { useEffect, useState } from "react"
+import type { AnalysisResponse, Certification } from "../types"
+import { fetchCertifications } from "../api/clients"
 
 interface DashboardProps {
-  analysis: AnalysisResult;
-  onReset: () => void;
+  analysis: AnalysisResponse
+  onReset: () => void
 }
 
-function SkillGapBar({ skill, currentLevel, requiredLevel, priority }: {
-  skill: string;
-  currentLevel: number;
-  requiredLevel: number;
-  priority: string;
-}) {
-  const gap = requiredLevel - currentLevel;
-  const priorityColors: Record<string, string> = {
-    critical: "#ff4444",
-    high: "#ff8800",
-    medium: "#ffcc00",
-    low: "#44cc88",
-  };
-
+function DonutChart({ value, color, label }: { value: number; color: string; label: string }) {
+  const r = 36
+  const circ = 2 * Math.PI * r
+  const filled = (value / 100) * circ
   return (
-    <div className="skill-gap-item">
-      <div className="skill-gap-header">
-        <span className="skill-name">{skill}</span>
-        <span
-          className="priority-badge"
-          style={{ backgroundColor: priorityColors[priority] + "22", color: priorityColors[priority] }}
-        >
-          {priority}
-        </span>
-      </div>
-      <div className="skill-bar-track">
-        <div
-          className="skill-bar-current"
-          style={{ width: `${(currentLevel / 5) * 100}%` }}
+    <div className="flex flex-col items-center gap-1.5">
+      <svg viewBox="0 0 88 88" width="80" height="80">
+        <circle cx="44" cy="44" r={r} fill="none" stroke="#f0f0f0" strokeWidth="9" />
+        <circle
+          cx="44" cy="44" r={r}
+          fill="none"
+          stroke={color}
+          strokeWidth="9"
+          strokeDasharray={`${filled} ${circ}`}
+          strokeLinecap="round"
+          transform="rotate(-90 44 44)"
+          style={{ transition: 'stroke-dasharray 0.8s ease' }}
         />
-        <div
-          className="skill-bar-gap"
-          style={{
-            left: `${(currentLevel / 5) * 100}%`,
-            width: `${(gap / 5) * 100}%`,
-            backgroundColor: priorityColors[priority] + "66",
-          }}
-        />
-      </div>
-      <div className="skill-levels">
-        <span>Current: {currentLevel}/5</span>
-        <span>Target: {requiredLevel}/5</span>
-      </div>
+        <text x="44" y="49" textAnchor="middle" fill="#1a1a1a" fontSize="15"
+          fontWeight="600" fontFamily="IBM Plex Sans, sans-serif">
+          {value}
+        </text>
+      </svg>
+      <span className="text-[11px] text-gray-400 text-center leading-tight max-w-[68px]">{label}</span>
     </div>
-  );
+  )
 }
 
-function CareerCard({ path, isSelected, onClick }: {
-  path: CareerPath;
-  isSelected: boolean;
-  onClick: () => void;
-}) {
-  const growthIcons = { high: "🚀", medium: "📈", low: "📊" };
-
+function SkillBar({ label, value, color }: { label: string; value: number; color: string }) {
   return (
-    <div className={`career-card ${isSelected ? "selected" : ""}`} onClick={onClick}>
-      <div className="career-card-header">
-        <div className="match-score">
-          <svg viewBox="0 0 36 36" className="score-ring">
-            <circle cx="18" cy="18" r="15" fill="none" stroke="var(--border)" strokeWidth="3"/>
-            <circle
-              cx="18" cy="18" r="15" fill="none"
-              stroke="var(--accent)" strokeWidth="3"
-              strokeDasharray={`${(path.matchScore / 100) * 94} 94`}
-              strokeLinecap="round"
-              transform="rotate(-90 18 18)"
-            />
-          </svg>
-          <span className="score-num">{path.matchScore}%</span>
-        </div>
-        <div className="career-info">
-          <h3 className="career-title">{path.title}</h3>
-          {path.company && <span className="career-company">{path.company}</span>}
-        </div>
-        <span className="growth-badge">{growthIcons[path.growthPotential]}</span>
+    <div className="flex items-center gap-2.5 text-black">
+      <span className="text-xs w-28 shrink-0">{label}</span>
+      <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full rounded-full transition-all duration-700"
+          style={{ width: `${value}%`, background: color }} />
       </div>
-
-      <p className="career-desc">{path.description}</p>
-
-      <div className="career-meta">
-        <div className="meta-item">
-          <span className="meta-label">Salary</span>
-          <span className="meta-value">
-            ${(path.salary.min / 1000).toFixed(0)}k–${(path.salary.max / 1000).toFixed(0)}k
-          </span>
-        </div>
-        <div className="meta-item">
-          <span className="meta-label">Ready in</span>
-          <span className="meta-value">{path.timeToReady}</span>
-        </div>
-        <div className="meta-item">
-          <span className="meta-label">Skill gaps</span>
-          <span className="meta-value">{path.skillGaps.length}</span>
-        </div>
-      </div>
+      <span className="font-mono text-xs text-gray-700 w-8 text-right shrink-0">{value}%</span>
     </div>
-  );
+  )
 }
+
+type Phase = 'immediate' | 'short_term' | 'long_term'
 
 export function Dashboard({ analysis, onReset }: DashboardProps) {
-  const [activeTab, setActiveTab] = useState<"paths" | "gaps" | "chat">("paths");
-  const [selectedPath, setSelectedPath] = useState<CareerPath>(analysis.recommendedPaths[0]);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content: `Hi ${analysis.userProfile.name}! 👋 I've analyzed your resume. Your overall readiness score is **${analysis.overallReadinessScore}/100**. ${analysis.summary} What would you like to explore?`,
-      timestamp: new Date(),
-    },
-  ]);
-  const [inputValue, setInputValue] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [activePhase, setActivePhase] = useState<Phase>('immediate')
+  const [activeTab, setActiveTab] = useState<'overview' | 'skills' | 'roadmap' | 'certs'>('overview')
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    // Try to get role from URL params or just fetch all certs — 
+    // certs are fetched in Dashboard using extracted role context
+    // We pass role through analysis strengths context
+  }, [])
 
-  const sendMessage = async () => {
-    if (!inputValue.trim() || isTyping) return;
+  const scoreColor =
+    analysis.profile_score >= 70 ? '#2a7a4f'
+    : analysis.profile_score >= 40 ? '#8a6500'
+    : '#c33333'
 
-    const userMsg: Message = {
-      role: "user",
-      content: inputValue,
-      timestamp: new Date(),
-    };
+  const matchedPct = analysis.matched_skills.length > 0
+    ? Math.round((analysis.matched_skills.length /
+        (analysis.matched_skills.length + analysis.missing_skills.length)) * 100)
+    : 0
 
-    setMessages((prev) => [...prev, userMsg]);
-    setInputValue("");
-    setIsTyping(true);
+  const phases: Record<Phase, { label: string; items: string[] }> = {
+    immediate: { label: 'Right Now',  items: analysis.roadmap.immediate  },
+    short_term: { label: '3 Months',  items: analysis.roadmap.short_term },
+    long_term:  { label: '6+ Months', items: analysis.roadmap.long_term  },
+  }
 
-    try {
-      const apiMessages = [...messages, userMsg].map((m) => ({
-        role: m.role,
-        content: m.content,
-      }));
-      const response = await chatWithAdvisor(apiMessages, analysis);
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: response, timestamp: new Date() },
-      ]);
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: "I encountered an error. Please try again.",
-          timestamp: new Date(),
-        },
-      ]);
-    } finally {
-      setIsTyping(false);
-    }
-  };
+  const tabs = [
+    { key: 'overview', label: 'Overview' },
+    { key: 'skills',   label: 'Skills'   },
+    { key: 'roadmap',  label: 'Roadmap'  },
+    { key: 'certs',    label: 'Certs'    },
+  ] as const
 
   return (
-    <div className="dashboard">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="sidebar-profile">
-          <div className="avatar">
-            {analysis.userProfile.name.charAt(0).toUpperCase()}
-          </div>
-          <div className="profile-info">
-            <h3 className="profile-name">{analysis.userProfile.name}</h3>
-            <p className="profile-role">{analysis.userProfile.currentRole}</p>
-          </div>
-        </div>
+    <div className="min-h-screen bg-[#f5f4f0] text-black">
 
-        <div className="readiness-block">
-          <div className="readiness-label">Career Readiness</div>
-          <div className="readiness-bar-track">
-            <div
-              className="readiness-bar-fill"
-              style={{ width: `${analysis.overallReadinessScore}%` }}
-            />
-          </div>
-          <div className="readiness-score">{analysis.overallReadinessScore}/100</div>
+      {/* Topbar */}
+      <div className="bg-white border-b border-gray-200 px-7 py-3.5 flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <span className={`font-mono text-[11px] px-2.5 py-1 rounded border
+            ${analysis.ai_used
+              ? 'text-green-700 bg-green-50 border-green-200'
+              : 'text-gray-400 bg-gray-50 border-gray-200'}`}>
+            {analysis.ai_used ? '✦ AI Analysis' : '⚙ Fallback'}
+          </span>
+          <button
+            onClick={onReset}
+            className="text-sm text-gray-700 border border-gray-200 px-3 py-1 rounded hover:border-gray-400 hover:text-gray-900 transition-colors"
+          >
+            ← New Analysis
+          </button>
         </div>
+      </div>
 
-        <div className="sidebar-skills">
-          <h4 className="sidebar-section-label">Top Skills to Learn</h4>
-          <div className="skill-chips">
-            {analysis.topSkillsToLearn.slice(0, 6).map((skill) => (
-              <span key={skill} className="skill-chip">{skill}</span>
-            ))}
-          </div>
-        </div>
-
-        <nav className="sidebar-nav">
-          {(["paths", "gaps", "chat"] as const).map((tab) => (
+      {/* Tab nav */}
+      <div className="bg-white border-b border-gray-200 px-7">
+        <div className="flex gap-0">
+          {tabs.map((tab) => (
             <button
-              key={tab}
-              className={`nav-item ${activeTab === tab ? "active" : ""}`}
-              onClick={() => setActiveTab(tab)}
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`px-4 py-3 text-[13px] border-b-2 transition-colors
+                ${activeTab === tab.key
+                  ? 'border-gray-900 text-gray-900 font-medium'
+                  : 'border-transparent text-gray-600 hover:text-gray-700'}`}
             >
-              <span className="nav-icon">
-                {tab === "paths" ? "🗺️" : tab === "gaps" ? "📊" : "💬"}
-              </span>
-              <span className="nav-label">
-                {tab === "paths" ? "Career Paths" : tab === "gaps" ? "Skill Gaps" : "AI Advisor"}
-              </span>
+              {tab.label}
             </button>
           ))}
-        </nav>
+        </div>
+      </div>
 
-        <button className="reset-btn" onClick={onReset}>
-          ← New Analysis
-        </button>
-      </aside>
+      {/* Body */}
+      <div className="max-w-4xl mx-auto px-6 py-7 flex flex-col gap-4">
 
-      {/* Main Content */}
-      <main className="main-content">
-        {activeTab === "paths" && (
-          <div className="tab-content">
-            <div className="content-header">
-              <h2>Recommended Career Paths</h2>
-              <p>Based on your profile and market demand</p>
+        {/* ── OVERVIEW TAB ── */}
+        {activeTab === 'overview' && (
+          <>
+            <div className="bg-white border border-gray-200 rounded-md p-5">
+              <p className="text-[15px] font-semibold text-black uppercase tracking-widest mb-4">
+                Profile Score
+              </p>
+              <div className="grid grid-cols-3 gap-6 items-center">
+                {/* Big ring */}
+                <div className="flex flex-col items-center gap-2">
+                  <svg viewBox="0 0 120 120" width="110" height="110">
+                    <circle cx="60" cy="60" r="50" fill="none" stroke="#f0f0f0" strokeWidth="11" />
+                    <circle
+                      cx="60" cy="60" r="50" fill="none"
+                      stroke={scoreColor} strokeWidth="11"
+                      strokeDasharray={`${(analysis.profile_score / 100) * 314} 314`}
+                      strokeLinecap="round" transform="rotate(-90 60 60)"
+                      style={{ transition: 'stroke-dasharray 1s ease' }}
+                    />
+                    <text x="60" y="66" textAnchor="middle" fill="#1a1a1a" fontSize="26"
+                      fontWeight="700" fontFamily="IBM Plex Sans, sans-serif">
+                      {analysis.profile_score}
+                    </text>
+                  </svg>
+                  <span className="text-[11px] text-gray-800 uppercase tracking-wider">Overall Score</span>
+                </div>
+
+                {/* Donuts */}
+                <div className="flex justify-around">
+                  <DonutChart value={analysis.skill_coverage}    color="#2a7a4f" label="Skill Coverage" />
+                  <DonutChart value={analysis.project_relevance} color="#6366f1" label="Project Fit"    />
+                  <DonutChart value={matchedPct}                  color="#8a6500" label="Skills Matched" />
+                </div>
+
+                {/* Bars */}
+                <div className="flex flex-col gap-3">
+                  <SkillBar label="Skill Coverage"    value={analysis.skill_coverage}    color="#2a7a4f" />
+                  <SkillBar label="Project Relevance" value={analysis.project_relevance} color="#6366f1" />
+                  <SkillBar label="Core Skills Met"   value={matchedPct}                 color="#8a6500" />
+                </div>
+              </div>
+
+              {/* Strengths */}
+              {analysis.strengths.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
+                  {analysis.strengths.map((s, i) => (
+                    <span key={i} className="text-xs text-green-700 bg-green-50 border border-green-200 px-2.5 py-1 rounded">
+                      ✓ {s}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
-            <div className="career-grid">
-              {analysis.recommendedPaths.map((path) => (
-                <CareerCard
-                  key={path.title}
-                  path={path}
-                  isSelected={selectedPath.title === path.title}
-                  onClick={() => setSelectedPath(path)}
-                />
+
+            {/* Extracted info */}
+            {analysis.extracted_projects.length > 0 && (
+              <div className="bg-white border border-gray-200 rounded-md p-5">
+                <p className="text-[11px] font-semibold text-gray-800 uppercase tracking-widest mb-4">
+                  Extracted from Resume
+                </p>
+                <div className="flex flex-col gap-2">
+                  {analysis.extracted_projects.map((p, i) => (
+                    <div key={i} className="flex gap-3 items-start">
+                      <span className="font-mono text-[15px] text-gray-900 pt-0.5 shrink-0">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <p className="text-sm text-gray-900 leading-relaxed">{p}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* ── SKILLS TAB ── */}
+        {activeTab === 'skills' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-white border border-gray-200 rounded-md p-5">
+              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                Matched Skills
+                <span className="font-mono font-normal normal-case tracking-normal text-green-700 bg-green-50 border border-green-200 px-1.5 py-0.5 rounded text-[11px]">
+                  {analysis.matched_skills.length}
+                </span>
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {analysis.matched_skills.length > 0
+                  ? analysis.matched_skills.map((s) => (
+                      <span key={s} className="font-mono text-[11px] text-green-700 bg-green-50 border border-green-200 px-2 py-1 rounded">
+                        {s}
+                      </span>
+                    ))
+                  : <p className="text-sm text-gray-400">No skills matched yet</p>
+                }
+              </div>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-md p-5">
+              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                Missing Skills
+                <span className="font-mono font-normal normal-case tracking-normal text-red-600 bg-red-50 border border-red-200 px-1.5 py-0.5 rounded text-[11px]">
+                  {analysis.missing_skills.length}
+                </span>
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {analysis.missing_skills.length > 0
+                  ? analysis.missing_skills.map((s) => (
+                      <span key={s} className="font-mono text-[11px] text-red-600 bg-red-50 border border-red-200 px-2 py-1 rounded">
+                        {s}
+                      </span>
+                    ))
+                  : <p className="text-sm text-gray-400">All core skills covered 🎉</p>
+                }
+              </div>
+            </div>
+
+            {/* All extracted skills */}
+            <div className="bg-white border border-gray-200 rounded-md p-5 md:col-span-2">
+              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-4">
+                All Skills Found in Resume
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {analysis.extracted_skills.map((s) => (
+                  <span key={s} className="font-mono text-[11px] text-gray-600 bg-gray-50 border border-gray-200 px-2 py-1 rounded">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── ROADMAP TAB ── */}
+        {activeTab === 'roadmap' && (
+          <div className="bg-white border border-gray-200 rounded-md p-5">
+            <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-4">
+              Learning Roadmap
+            </p>
+
+            <div className="flex gap-1.5 mb-5 flex-wrap">
+              {(Object.keys(phases) as Phase[]).map((key) => (
+                <button
+                  key={key}
+                  onClick={() => setActivePhase(key)}
+                  className={`px-3.5 py-1.5 text-[13px] border rounded transition-colors
+                    ${activePhase === key
+                      ? 'bg-gray-900 border-gray-900 text-white'
+                      : 'border-gray-200 text-gray-500 hover:border-gray-400 hover:text-gray-900'}`}
+                >
+                  {phases[key].label}
+                </button>
               ))}
             </div>
 
-            {selectedPath && (
-              <div className="path-detail">
-                <h3 className="detail-title">Required Skills: {selectedPath.title}</h3>
-                <div className="required-skills">
-                  {selectedPath.requiredSkills.map((skill) => (
-                    <span key={skill} className="req-skill-tag">{skill}</span>
+            <div className="flex flex-col gap-2.5 mb-6">
+              {phases[activePhase].items.map((item, i) => (
+                <div key={i} className="flex gap-3.5 items-start">
+                  <span className="font-mono text-xs text-gray-300 pt-0.5 shrink-0 w-5">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <p className="text-sm text-gray-700 leading-relaxed">{item}</p>
+                </div>
+              ))}
+            </div>
+
+            {analysis.roadmap.suggested_projects.length > 0 && (
+              <div className="border-t border-gray-100 pt-4">
+                <p className="text-[11px] font-semibold text-gray-300 uppercase tracking-widest mb-3">
+                  Projects to Build
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                  {analysis.roadmap.suggested_projects.map((p, i) => (
+                    <div key={i} className="bg-gray-50 border border-gray-200 rounded p-3 flex flex-col gap-1">
+                      <span className="font-mono text-[10px] text-gray-400 uppercase">Project {i + 1}</span>
+                      <p className="text-[13px] text-gray-700 leading-snug">{p}</p>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -249,81 +308,94 @@ export function Dashboard({ analysis, onReset }: DashboardProps) {
           </div>
         )}
 
-        {activeTab === "gaps" && (
-          <div className="tab-content">
-            <div className="content-header">
-              <h2>Skill Gap Analysis</h2>
-              <p>For: {selectedPath.title}</p>
-            </div>
-            <div className="path-selector">
-              {analysis.recommendedPaths.map((path) => (
-                <button
-                  key={path.title}
-                  className={`path-select-btn ${selectedPath.title === path.title ? "active" : ""}`}
-                  onClick={() => setSelectedPath(path)}
-                >
-                  {path.title}
-                </button>
-              ))}
-            </div>
-            <div className="skill-gaps-list">
-              {selectedPath.skillGaps.map((gap) => (
-                <SkillGapBar key={gap.skill} {...gap} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === "chat" && (
-          <div className="chat-container">
-            <div className="chat-header">
-              <div className="advisor-avatar">🤖</div>
-              <div>
-                <h3>SkillBridge AI Advisor</h3>
-                <p className="online-status">● Online</p>
-              </div>
-            </div>
-            <div className="messages-area">
-              {messages.map((msg, i) => (
-                <div key={i} className={`message ${msg.role}`}>
-                  <div className="message-bubble">{msg.content}</div>
-                  <div className="message-time">
-                    {msg.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-                  </div>
-                </div>
-              ))}
-              {isTyping && (
-                <div className="message assistant">
-                  <div className="message-bubble typing-indicator">
-                    <span /><span /><span />
-                  </div>
-                </div>
-              )}
-              <div ref={messagesEndRef} />
-            </div>
-            <div className="chat-input-area">
-              <input
-                className="chat-input"
-                type="text"
-                placeholder="Ask about your career path..."
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                disabled={isTyping}
-              />
-              <button
-                className="send-btn"
-                onClick={sendMessage}
-                disabled={isTyping || !inputValue.trim()}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M3 10l14-7-7 14V10H3z" fill="currentColor"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        )}
-      </main>
+        {/* ── CERTS TAB ── */}
+        {activeTab === 'certs' && <CertsTab />}
+      </div>
     </div>
-  );
+  )
+}
+
+// Separate component so it can fetch certs with role from analysis
+function CertsTab() {
+  const [certs, setCerts] = useState<Certification[]>([])
+  const [role, setRole] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const ROLES = [
+    'Frontend Developer', 'Backend Developer', 'Full Stack Developer',
+    'ML Engineer', 'DevOps Engineer', 'Software Developer', 'QA Analyst',
+    'AI/ML Engineer', 'Data Scientist', 'Cloud Architect', 'Cybersecurity Analyst',
+    'Game Developer', 'Embedded Systems Engineer', 'Android Developer', 'iOS Developer',
+    'Blockchain Developer', 'Smart Contract Developer', 'Web3 Developer',
+    'AR/VR Developer', 'Desktop Application Developer', 'Systems Programmer',
+    'Compiler Engineer', 'Graphics Engineer', 'Audio Engineer', 'Firmware Engineer',
+    'Data Engineer', 'Data Analyst', 'MLOps Engineer', 'NLP Engineer',
+    'Computer Vision Engineer', 'AI Research Engineer', 'Business Intelligence Developer',
+    'Analytics Engineer', 'Site Reliability Engineer', 'Platform Engineer',
+    'Infrastructure Engineer', 'Database Administrator', 'Network Engineer',
+    'Linux Systems Administrator', 'Penetration Tester', 'Security Engineer',
+    'Application Security Engineer', 'UI Engineer', 'UX Engineer',
+    'Design Systems Engineer', 'API Developer', 'SDK Developer',
+    'Technical Lead', 'Solutions Architect', 'Developer Advocate', 'Open Source Engineer',
+  ]
+
+  const fetchCerts = async (selectedRole: string) => {
+    if (!selectedRole) return
+    setLoading(true)
+    const data = await fetchCertifications(selectedRole)
+    setCerts(data)
+    setLoading(false)
+  }
+
+  return (
+    <div className="bg-white border border-gray-200 rounded-md p-5">
+      <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-4">
+        Recommended Certifications
+      </p>
+
+      <div className="relative mb-4">
+        <select
+          value={role}
+          onChange={(e) => { setRole(e.target.value); fetchCerts(e.target.value) }}
+          className="w-full px-3 py-2.5 pr-9 bg-white border border-gray-300 rounded-md text-sm appearance-none cursor-pointer focus:outline-none focus:border-gray-900"
+        >
+          <option value="">Select a role to see certifications…</option>
+          {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
+        </select>
+        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-[11px]">▾</span>
+      </div>
+
+      {loading && <p className="text-sm text-gray-400">Loading…</p>}
+
+      {certs.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          {certs.map((c, i) => (
+            <a
+              key={i}
+              href={c.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col gap-1.5 p-3 bg-gray-50 border border-gray-200 rounded hover:border-gray-400 transition-colors no-underline"
+            >
+              <div className="flex justify-between items-start gap-2">
+                <span className="text-[13px] text-gray-900 leading-snug">{c.name}</span>
+                <span className={`font-mono text-[10px] px-1.5 py-0.5 rounded shrink-0 uppercase border
+                  ${c.level === 'beginner'     ? 'text-green-700 bg-green-50 border-green-200'  : ''}
+                  ${c.level === 'intermediate' ? 'text-yellow-700 bg-yellow-50 border-yellow-200' : ''}
+                  ${c.level === 'advanced'     ? 'text-red-600 bg-red-50 border-red-200'         : ''}
+                `}>
+                  {c.level}
+                </span>
+              </div>
+              <span className="text-xs text-gray-400">{c.provider} ↗</span>
+            </a>
+          ))}
+        </div>
+      )}
+
+      {!loading && role && certs.length === 0 && (
+        <p className="text-sm text-gray-400">No certifications found for this role.</p>
+      )}
+    </div>
+  )
 }

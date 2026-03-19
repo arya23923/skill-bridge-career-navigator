@@ -1,182 +1,162 @@
-import { useState, useRef, useCallback } from "react";
-import type { UploadState } from "../types";
+import { useState, useRef } from 'react'
+import type { DragEvent, ChangeEvent } from 'react'
 
-interface UploadFormProps {
-  onAnalysisStart: () => void;
-  onAnalysisComplete: (text: string) => void;
-  onError: (error: string) => void;
-  uploadState: UploadState;
+const ROLES = [
+  'Frontend Developer', 'Backend Developer', 'Full Stack Developer',
+  'ML Engineer', 'DevOps Engineer', 'Software Developer', 'QA Analyst',
+  'AI/ML Engineer', 'Data Scientist', 'Cloud Architect', 'Cybersecurity Analyst',
+  'Game Developer', 'Embedded Systems Engineer', 'Android Developer', 'iOS Developer',
+  'Blockchain Developer', 'Smart Contract Developer', 'Web3 Developer',
+  'AR/VR Developer', 'Desktop Application Developer', 'Systems Programmer',
+  'Compiler Engineer', 'Graphics Engineer', 'Audio Engineer', 'Firmware Engineer',
+  'Data Engineer', 'Data Analyst', 'MLOps Engineer', 'NLP Engineer',
+  'Computer Vision Engineer', 'AI Research Engineer', 'Business Intelligence Developer',
+  'Analytics Engineer', 'Site Reliability Engineer', 'Platform Engineer',
+  'Infrastructure Engineer', 'Database Administrator', 'Network Engineer',
+  'Linux Systems Administrator', 'Penetration Tester', 'Security Engineer',
+  'Application Security Engineer', 'UI Engineer', 'UX Engineer',
+  'Design Systems Engineer', 'API Developer', 'SDK Developer',
+  'Technical Lead', 'Solutions Architect', 'Developer Advocate', 'Open Source Engineer',
+]
+
+interface Props {
+  onSubmit: (file: File, role: string) => void
+  loading: boolean
+  error: string | null
 }
 
-export function UploadForm({
-  onAnalysisStart,
-  onAnalysisComplete,
-  onError,
-  uploadState,
-}: UploadFormProps) {
-  const [dragActive, setDragActive] = useState(false);
-  const [pastedText, setPastedText] = useState("");
-  const [inputMode, setInputMode] = useState<"file" | "text">("file");
-  const fileInputRef = useRef<HTMLInputElement>(null);
+export default function UploadForm({ onSubmit, loading, error }: Props) {
+  const [file, setFile] = useState<File | null>(null)
+  const [role, setRole] = useState('')
+  const [dragging, setDragging] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  const handleFile = useCallback(
-    (file: File) => {
-      if (!file) return;
-      if (file.type !== "text/plain" && !file.name.endsWith(".txt")) {
-        onError("Please upload a .txt file or paste your resume text directly.");
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const text = e.target?.result as string;
-        onAnalysisStart();
-        onAnalysisComplete(text);
-      };
-      reader.onerror = () => onError("Failed to read file.");
-      reader.readAsText(file);
-    },
-    [onAnalysisStart, onAnalysisComplete, onError]
-  );
+  const isValidFile = (f: File): boolean => {
+    const ext = f.name.split('.').pop()?.toLowerCase()
+    const validExts = ['pdf', 'docx']
+    const validMimes = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    ]
+    return validExts.includes(ext ?? '') || validMimes.includes(f.type)
+  }
 
-  const handleDrop = useCallback(
-    (e: React.DragEvent) => {
-      e.preventDefault();
-      setDragActive(false);
-      const file = e.dataTransfer.files[0];
-      if (file) handleFile(file);
-    },
-    [handleFile]
-  );
-
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setDragActive(true);
-  };
-
-  const handleDragLeave = () => setDragActive(false);
-
-  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) handleFile(file);
-  };
-
-  const handleTextSubmit = () => {
-    if (pastedText.trim().length < 100) {
-      onError("Please provide more resume content (at least 100 characters).");
-      return;
+  const handleFile = (f: File) => {
+    if (!isValidFile(f)) {
+      alert('Only PDF or DOCX files are supported.')
+      return
     }
-    onAnalysisStart();
-    onAnalysisComplete(pastedText);
-  };
+    setFile(f)
+  }
 
-  const isLoading =
-    uploadState.status === "uploading" ||
-    uploadState.status === "analyzing";
+  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    setDragging(false)
+    const f = e.dataTransfer.files[0]
+    if (f) handleFile(f)
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const f = e.target.files?.[0]
+    if (f) handleFile(f)
+    e.target.value = ''
+  }
+
+  const canSubmit = file && role && !loading
 
   return (
-    <div className="upload-container">
-      <div className="upload-header">
-        <div className="upload-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="23" stroke="var(--accent)" strokeWidth="1.5" strokeDasharray="4 2" />
-            <path d="M24 14v14M17 21l7-7 7 7" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M14 34h20" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        </div>
-        <h2 className="upload-title">Begin Your Journey</h2>
-        <p className="upload-subtitle">Upload your resume and let AI map your career horizon</p>
-      </div>
+    <div className=" bg-gray-900 text-w flex items-center justify-center px-5 py-10">
+      <div className="w-full flex flex-col gap-4">
+        <p className="text-sm text-white text-lg -mt-1">
+          Drop your resume, pick your target role — we'll show you exactly what's missing and how to get there.
+        </p>
 
-      <div className="mode-toggle">
-        <button
-          className={`mode-btn ${inputMode === "file" ? "active" : ""}`}
-          onClick={() => setInputMode("file")}
-        >
-          Upload File
-        </button>
-        <button
-          className={`mode-btn ${inputMode === "text" ? "active" : ""}`}
-          onClick={() => setInputMode("text")}
-        >
-          Paste Text
-        </button>
-      </div>
-
-      {inputMode === "file" ? (
+        {/* Drop zone */}
         <div
-          className={`drop-zone ${dragActive ? "drag-active" : ""} ${isLoading ? "loading" : ""}`}
+          onClick={() => !file && inputRef.current?.click()}
+          onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
+          onDragLeave={() => setDragging(false)}
           onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onClick={() => !isLoading && fileInputRef.current?.click()}
+          className={`
+            border rounded-md px-5 py-10 text-center bg-white cursor-pointer
+            transition-colors duration-150
+            ${dragging ? 'border-gray-900 border-solid' : 'border-dashed border-gray-300'}
+            ${file ? 'border-solid border-gray-900 cursor-default' : 'hover:border-gray-900'}
+          `}
         >
           <input
-            ref={fileInputRef}
+            ref={inputRef}
             type="file"
-            accept=".txt,text/plain"
-            onChange={handleFileInput}
-            style={{ display: "none" }}
+            accept=".pdf,application/pdf,.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            onChange={handleChange}
+            className="hidden"
           />
-          {isLoading ? (
-            <div className="loading-state">
-              <div className="orbit-loader">
-                <div className="orbit-ring" />
-                <div className="orbit-dot" />
+
+          {file ? (
+            <div className="flex items-center gap-3 text-left">
+              <svg className="text-gray-500 shrink-0" width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <div className="flex-1 flex flex-col gap-0.5">
+                <span className="font-mono text-xs text-gray-900">{file.name}</span>
+                <span className="text-[11px] text-gray-400">{(file.size / 1024).toFixed(0)} KB</span>
               </div>
-              <p className="loading-text">
-                {uploadState.status === "uploading" ? "Reading resume..." : "Analyzing your profile..."}
-              </p>
-              <p className="loading-sub">SkillBridge AI is mapping your career DNA</p>
+              <button
+                onClick={(e) => { e.stopPropagation(); setFile(null) }}
+                className="w-6 h-6 border border-gray-200 rounded text-gray-400 text-[11px] hover:border-red-300 hover:text-red-400 transition-colors"
+              >
+                ✕
+              </button>
             </div>
           ) : (
-            <div className="drop-content">
-              <div className="drop-icon">📄</div>
-              <p className="drop-main">Drop your resume here</p>
-              <p className="drop-sub">or click to browse — .txt format</p>
+            <div>
+              <span className="text-2xl text-gray-400 block mb-2">↑</span>
+              <p className="text-sm text-gray-600 mb-1">Drop your resume here</p>
+              <span className="text-xs text-gray-400">PDF or DOCX · Click to browse</span>
             </div>
           )}
         </div>
-      ) : (
-        <div className="text-input-area">
-          <textarea
-            className="resume-textarea"
-            placeholder="Paste your resume text here...&#10;&#10;Include your work experience, skills, education, and achievements for the best analysis."
-            value={pastedText}
-            onChange={(e) => setPastedText(e.target.value)}
-            rows={12}
-            disabled={isLoading}
-          />
-          <div className="char-count">{pastedText.length} characters</div>
-          <button
-            className={`analyze-btn ${isLoading ? "loading" : ""}`}
-            onClick={handleTextSubmit}
-            disabled={isLoading || pastedText.trim().length < 100}
+
+        {/* Role select */}
+        <div className="relative">
+          <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className="w-full px-3 py-2.5 pr-9 bg-white border border-gray-300 rounded-md text-sm text-gray-900 appearance-none cursor-pointer focus:outline-none focus:border-gray-900 font-sans"
           >
-            {isLoading ? (
-              <>
-                <span className="btn-spinner" />
-                Analyzing...
-              </>
-            ) : (
-              <>
-                <span>Analyze Resume</span>
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </>
-            )}
-          </button>
+            <option value="">Select your target role…</option>
+            {ROLES.map((r) => (
+              <option key={r} value={r}>{r}</option>
+            ))}
+          </select>
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-[11px]">▾</span>
         </div>
-      )}
 
-      {uploadState.error && (
-        <div className="error-banner">
-          <span>⚠️</span>
-          <span>{uploadState.error}</span>
-        </div>
-      )}
+        {/* Error */}
+        {error && (
+          <div className="px-3 py-2.5 bg-red-50 border border-red-200 rounded-md text-red-600 text-[13px]">
+            {error}
+          </div>
+        )}
 
-      
+        {/* Submit */}
+        <button
+          onClick={() => canSubmit && onSubmit(file!, role)}
+          disabled={!canSubmit}
+          className="w-full py-3 bg-gray-900 text-white text-sm font-medium rounded-md disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-gray-700 transition-colors"
+        >
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin inline-block" />
+              Analyzing your resume…
+            </span>
+          ) : (
+            'Analyze Resume →'
+          )}
+        </button>
+
+      </div>
     </div>
-  );
+  )
 }

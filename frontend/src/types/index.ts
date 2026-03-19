@@ -1,52 +1,28 @@
-export interface SkillGap {
-  skill: string;
-  currentLevel: number;
-  requiredLevel: number;
-  priority: "critical" | "high" | "medium" | "low";
-  category: string;
+export interface Roadmap {
+  immediate: string[]
+  short_term: string[]
+  long_term: string[]
+  suggested_projects: string[]
 }
 
-export interface CareerPath {
-  title: string;
-  company?: string;
-  matchScore: number;
-  salary: {
-    min: number;
-    max: number;
-    currency: string;
-  };
-  skillGaps: SkillGap[];
-  timeToReady: string;
-  description: string;
-  requiredSkills: string[];
-  growthPotential: "high" | "medium" | "low";
+export interface AnalysisResponse {
+  profile_score: number
+  skill_coverage: number
+  project_relevance: number
+  extracted_skills: string[]
+  extracted_projects: string[]
+  matched_skills: string[]
+  missing_skills: string[]
+  strengths: string[]
+  roadmap: Roadmap
+  ai_used: boolean
 }
 
-export interface UserProfile {
-  name: string;
-  currentRole: string;
-  experience: number;
-  skills: string[];
-  education: string;
-  resumeText?: string;
+export interface Certification {
+  name: string
+  provider: string
+  url: string
+  level: 'beginner' | 'intermediate' | 'advanced'
 }
 
-export interface AnalysisResult {
-  userProfile: UserProfile;
-  recommendedPaths: CareerPath[];
-  topSkillsToLearn: string[];
-  overallReadinessScore: number;
-  summary: string;
-}
-
-export interface UploadState {
-  status: "idle" | "uploading" | "analyzing" | "complete" | "error";
-  progress: number;
-  error?: string;
-}
-
-export interface Message {
-  role: "user" | "assistant";
-  content: string;
-  timestamp: Date;
-}
+export type AppState = 'upload' | 'loading' | 'result'

@@ -1,87 +1,55 @@
 import { useState } from "react";
-import { UploadForm } from "./components/UploadForm";
+import UploadForm from "./components/UploadForm";
 import { Dashboard } from "./components/Dashboard";
 import { analyzeResume } from "./api/clients";
-import type { AnalysisResult, UploadState } from "./types";
+import type { AnalysisResponse } from "./types";
 import "./index.css";
 
+type AppState = "upload" | "loading" | "result"
+
 export default function App() {
-  const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
-  const [uploadState, setUploadState] = useState<UploadState>({
-    status: "idle",
-    progress: 0,
-  });
+  const [appState, setAppState] = useState<AppState>("upload")
+  const [result, setResult] = useState<AnalysisResponse | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleAnalysisStart = () => {
-    setUploadState({ status: "uploading", progress: 30 });
-  };
-
-  const handleResumeText = async (text: string) => {
-    setUploadState({ status: "analyzing", progress: 60 });
+  const handleSubmit = async (file: File, selectedRole: string) => {
+    setAppState("loading")
+    setError(null)
     try {
-      const result = await analyzeResume(text);
-      setAnalysis(result);
-      setUploadState({ status: "complete", progress: 100 });
+      const data = await analyzeResume(file, selectedRole)
+      setResult(data)
+      setAppState("result")
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Analysis failed";
-      setUploadState({ status: "error", progress: 0, error: message });
+      const message = err instanceof Error ? err.message : "Analysis failed"
+      setError(message)
+      setAppState("upload")
     }
-  };
-
-  const handleError = (error: string) => {
-    setUploadState({ status: "error", progress: 0, error });
-  };
+  }
 
   const handleReset = () => {
-    setAnalysis(null);
-    setUploadState({ status: "idle", progress: 0 });
-  };
+    setResult(null)
+    setError(null)
+    setAppState("upload")
+  }
 
-  if (analysis && uploadState.status === "complete") {
-    return (
-      <div className="app">
-        <header className="app-header compact">
-          <div className="logo">
-            <span className="logo-mark">◈</span>
-            <span className="logo-text">SkillBridge</span>
-          </div>
-        </header>
-        <Dashboard analysis={analysis} onReset={handleReset} />
-      </div>
-    );
+  if (appState === "result" && result) {
+    return <Dashboard analysis={result} onReset={handleReset} />
   }
 
   return (
-    <div className="bg-white text-black">
-      <div className="landing-bg">
-        <div className="bg-orb orb-1" />
-        <div className="bg-orb orb-2" />
-        <div className="bg-grid" />
-      </div>
-
-      <div className="landing-hero">
-        <div className="hero-text">
-          <h1 className="hero-title">
-            Map Your
-            <br />
-            <span className="hero-accent">Career Future</span>
-          </h1>
-          <p className="hero-desc">
-            Upload your resume and get a personalized career roadmap,
-            skill gap analysis.
-          </p>
-          
-        </div>
-
-        <div className="hero-form">
-          <UploadForm
-            onAnalysisStart={handleAnalysisStart}
-            onAnalysisComplete={handleResumeText}
-            onError={handleError}
-            uploadState={uploadState}
-          />
-        </div>
-      </div>
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-900 text-white p-4">
+      <h1 className="text-6xl font-bold mb-4">
+            Map Your Career Future
+      </h1>
+      <p className="text-2xl">
+              Upload your resume and get a personalized career roadmap,
+              skill gap analysis.
+      </p>
+      <UploadForm
+        onSubmit={handleSubmit}
+        loading={appState === "loading"}
+        error={error}
+      />
     </div>
-  );
+  )
 }
