@@ -1,71 +1,33 @@
-import type {
-  AnalysisResult,
-  HealthResponse,
-  ProfileRequest,
-  Role,
-  SkillsData,
-  Certification,
-} from "../types";
+import type { AnalysisResponse, Certification } from "../types";
 
-const BASE = "/api";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
-// ── Low-level fetch wrapper ───────────────────────────────────────────────────
+export async function analyzeResume(
+  file: File,
+  role: string
+): Promise<AnalysisResponse> {
+  const form = new FormData();
+  form.append("file", file);
+  form.append("role", role);
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { "Content-Type": "application/json" },
-    ...init,
+  const res = await fetch(`${BASE_URL}/analyze`, {
+    method: "POST",
+    body: form,
   });
 
   if (!res.ok) {
-    let message = `Request failed (${res.status})`;
-    try {
-      const err = await res.json();
-      if (Array.isArray(err.detail)) {
-        // FastAPI validation errors come as an array of objects
-        message = err.detail
-          .map((d: { msg?: string; message?: string }) => d.msg ?? d.message ?? JSON.stringify(d))
-          .join(", ");
-      } else if (typeof err.detail === "string") {
-        message = err.detail;
-      }
-    } catch {
-      // ignore JSON parse failures – fall back to status message above
-    }
-    throw new Error(message);
+    const err = await res.json().catch(() => ({ detail: "Unknown error" }));
+    throw new Error(err.detail || `HTTP ${res.status}`);
   }
 
-  return res.json() as Promise<T>;
+  return res.json();
 }
 
-// ── Typed API methods ─────────────────────────────────────────────────────────
-
-export const api = {
-  /** List all available target roles. */
-  getRoles(): Promise<Role[]> {
-    return request<Role[]>("/roles");
-  },
-
-  /** Categorised skills taxonomy (~80 skills across 6 categories). */
-  getSkills(): Promise<SkillsData> {
-    return request<SkillsData>("/skills");
-  },
-
-  /** All certifications (unfiltered). */
-  getCertifications(): Promise<Certification[]> {
-    return request<Certification[]>("/certifications");
-  },
-
-  /** Full profile gap analysis — runs Gemini then falls back to rule-based. */
-  analyseProfile(payload: ProfileRequest): Promise<AnalysisResult> {
-    return request<AnalysisResult>("/analyse", {
-      method: "POST",
-      body: JSON.stringify(payload),
-    });
-  },
-
-  /** Health check — tells you whether Gemini is live. */
-  health(): Promise<HealthResponse> {
-    return request<HealthResponse>("/health");
-  },
-};
+export async function getCertifications(
+  role: string
+): Promise<Certification[]> {
+  const encoded = encodeURIComponent(role);
+  const res = await fetch(`${BASE_URL}/certifications/${encoded}`);
+  if (!res.ok) return [];
+  return res.json();
+}

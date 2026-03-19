@@ -1,173 +1,56 @@
-import { useState, useEffect } from "react";
-import { api } from "./api/client";
-import UploadForm from "./components/UploadForm";
+import { useState } from "react";
+import { UploadStep as UploadForm } from "./components/UploadForm";
+import { LoadingScreen } from "./components/LoadingScreen";
 import Dashboard from "./components/Dashboard";
-import type { AnalysisResult, ProfileRequest, Role } from "./types";
+import { analyzeResume } from "./api/client";
+import type { AnalysisResponse } from "./types";
 
-// ── Nav ───────────────────────────────────────────────────────────────────────
-
-function Nav({
-  view,
-  hasDashboard,
-  onBuild,
-  onDashboard,
-}: {
-  view: "build" | "dashboard";
-  hasDashboard: boolean;
-  onBuild: () => void;
-  onDashboard: () => void;
-}) {
-  return (
-    <nav
-      style={{
-        background: "rgba(10,10,15,0.85)",
-        backdropFilter: "blur(12px)",
-        borderBottom: "1px solid var(--border)",
-        padding: "0 2rem",
-        display: "flex",
-        alignItems: "center",
-        height: "58px",
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-      }}
-    >
-      {/* Logo */}
-      <div style={{ display: "flex", alignItems: "center", gap: "10px", marginRight: "2rem" }}>
-        <div
-          style={{
-            width: "28px", height: "28px", borderRadius: "8px",
-            background: "var(--accent)", display: "flex", alignItems: "center",
-            justifyContent: "center", fontSize: "14px", fontWeight: 700, color: "#fff",
-          }}
-        >
-          S
-        </div>
-        <span style={{ fontWeight: 600, fontSize: "16px", letterSpacing: "-0.3px" }}>
-          Skill<span style={{ color: "var(--accent)" }}>Bridge</span>
-        </span>
-      </div>
-
-      {/* Tabs */}
-      <div style={{ display: "flex", gap: "4px" }}>
-        {(
-          [
-            { id: "build",     label: "Profile Builder" },
-            { id: "dashboard", label: "Dashboard"       },
-          ] as const
-        ).map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            onClick={t.id === "build" ? onBuild : onDashboard}
-            disabled={t.id === "dashboard" && !hasDashboard}
-            style={{
-              padding: "6px 16px",
-              borderRadius: "6px",
-              fontSize: "13px",
-              fontWeight: view === t.id ? 500 : 400,
-              fontFamily: "var(--font)",
-              cursor: t.id === "dashboard" && !hasDashboard ? "not-allowed" : "pointer",
-              background: view === t.id ? "var(--accent-bg)" : "transparent",
-              color:
-                view === t.id
-                  ? "var(--accent2)"
-                  : t.id === "dashboard" && !hasDashboard
-                  ? "var(--text3)"
-                  : "var(--text2)",
-              border:
-                view === t.id
-                  ? "1px solid rgba(108,99,255,0.25)"
-                  : "1px solid transparent",
-              transition: "all 0.15s",
-            }}
-          >
-            {t.label}
-          </button>
-        ))}
-      </div>
-
-      <div style={{ flex: 1 }} />
-      <span
-        style={{ fontSize: "12px", color: "var(--text3)", fontFamily: "var(--mono)" }}
-      >
-        Career Navigator v1.0
-      </span>
-    </nav>
-  );
-}
-
-// ── App ───────────────────────────────────────────────────────────────────────
+type AppState = "upload" | "loading" | "results";
 
 export default function App() {
-  const [view, setView]         = useState<"build" | "dashboard">("build");
-  const [roles, setRoles]       = useState<Role[]>([]);
-  const [skillsData, setSkillsData] = useState<Record<string, string[]>>({});
-  const [profile, setProfile]   = useState<ProfileRequest | null>(null);
-  const [result, setResult]     = useState<AnalysisResult | null>(null);
-  const [loading, setLoading]   = useState(false);
-  const [error, setError]       = useState("");
+  const [state, setState] = useState<AppState>("upload");
+  const [results, setResults] = useState<AnalysisResponse | null>(null);
+  const [role, setRole] = useState("");
+  const [filename, setFilename] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  // Fetch reference data on mount
-  useEffect(() => {
-    api.getRoles().then(setRoles).catch(() => {});
-    api.getSkills().then((d) => setSkillsData(d.categories ?? {})).catch(() => {});
-  }, []);
-
-  async function handleAnalyse(profileData: ProfileRequest) {
-    setLoading(true);
-    setError("");
-    setProfile(profileData);
+  const handleSubmit = async (file: File, selectedRole: string) => {
+    setError(null);
+    setRole(selectedRole);
+    setFilename(file.name);
+    setState("loading");
 
     try {
-      const res = await api.analyseProfile(profileData);
-      setResult(res);
-      setView("dashboard");
-    } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
+      const data = await analyzeResume(file, selectedRole);
+      setResults(data);
+      setState("results");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Something went wrong.";
+      setError(msg);
+      setState("upload");
     }
+  };
 
-    setLoading(false);
-  }
+  const handleReset = () => {
+    setResults(null);
+    setRole("");
+    setFilename("");
+    setError(null);
+    setState("upload");
+  };
 
-  function handleEdit() {
-    setView("build");
-    setError("");
-  }
+  if (state === "loading") return <LoadingScreen role={role} />;
 
-  return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <Nav
-        view={view}
-        hasDashboard={!!result}
-        onBuild={() => setView("build")}
-        onDashboard={() => result && setView("dashboard")}
+  if (state === "results" && results) {
+    return (
+      <Dashboard
+        data={results}
+        role={role}
+        filename={filename}
+        onReset={handleReset}
       />
+    );
+  }
 
-      <main
-        style={{
-          flex: 1,
-          padding: "2rem 1rem",
-          maxWidth: "1100px",
-          margin: "0 auto",
-          width: "100%",
-        }}
-      >
-        {view === "build" && (
-          <UploadForm
-            roles={roles}
-            skillsData={skillsData}
-            onSubmit={handleAnalyse}
-            loading={loading}
-            error={error}
-            initialProfile={profile}
-          />
-        )}
-
-        {view === "dashboard" && result && profile && (
-          <Dashboard result={result} profile={profile} onEdit={handleEdit} />
-        )}
-      </main>
-    </div>
-  );
+  return <UploadForm onSubmit={handleSubmit} loading={false} error={error} />;
 }
