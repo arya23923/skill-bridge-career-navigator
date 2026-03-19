@@ -1,7 +1,7 @@
 import os
 import json
 import re
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
 
 from services.fallback_service import (
     extract_skills_fallback,
@@ -9,34 +9,103 @@ from services.fallback_service import (
     generate_roadmap_fallback,
 )
 
+GROQ_MODEL = "llama-3.3-70b-versatile"
 
-def _get_gemini_model():
-    """Initialize Gemini model — returns None if unavailable."""
+
+def _get_groq_client():
+    """Returns Groq client or None if unavailable."""
     try:
-        import google.generativeai as genai
-        api_key = os.getenv("GEMINI_API_KEY", "")
+        from groq import Groq
+        api_key = os.getenv("GROQ_API_KEY", "")
         if not api_key:
+            print("[AI] No GROQ_API_KEY found in .env")
             return None
-        genai.configure(api_key=api_key)
-        return genai.GenerativeModel("gemini-1.5-flash")
+        return Groq(api_key=api_key)
     except ImportError:
+        print("[AI] groq not installed — run: pip install groq")
+        return None
+
+
+def _call_groq(prompt: str) -> Optional[str]:
+    """Call Groq API. Returns text response or None on failure."""
+    client = _get_groq_client()
+    if not client:
+        return None
+
+    try:
+        response = client.chat.completions.create(
+            model=GROQ_MODEL,
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert AI assistant. Always respond with valid JSON only — no markdown, no backticks, no explanation."
+                },
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.3,
+            max_tokens=2000,
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print(f"[AI] Groq error: {e}")
         return None
 
 
 def extract_resume_data(resume_text: str, role: str) -> Tuple[List[str], List[str], bool]:
-    """
-    Extract skills and projects from resume text.
-    Returns (skills, projects, ai_used).
-    """
-    model = _get_gemini_model()
+    """Extract skills and projects from resume. Returns (skills, projects, ai_used)."""
 
-    if model:
+    prompt = f"""You are an expert resume parser. Thoroughly analyze every section of this resume.
+
+Target Role: {role}
+
+Resume text:
+{resume_text[:6000]}
+
+Extract ALL information from EVERY section — Work Experience, Projects, Skills,
+Achievements, Open Source Contributions, Certifications, Education, Volunteer Work,
+Publications, Awards, Hackathons, Research, or any other section present.
+
+Return ONLY valid JSON in this exact format:
+{{
+  "skills": ["skill1", "skill2", ...],
+  "projects": ["description1", "description2", ...]
+}}
+
+Rules for skills:
+- Extract ALL technical skills: languages, frameworks, libraries, tools, platforms,
+  databases, cloud services, methodologies, protocols
+- Include skills mentioned in experience bullets even if not in a dedicated skills section
+- Include skills implied by tools used (e.g. Kubernetes implies Docker)
+- Do NOT include generic words like "communication", "teamwork"
+- Aim for 15-40 skills if they exist in the resume
+
+Rules for projects:
+- Extract from: Projects section, Work Experience, Open Source, Side Projects,
+  Hackathons, Research, Academic Projects, Freelance Work
+- For each write ONE sentence: what it does + tech stack used + any metrics or achievements
+- Include up to 10 projects
+- Work experience bullets that describe building something count as projects
+
+Return only JSON, nothing else."""
+
+    text = _call_groq(prompt)
+
+    if text:
         try:
-            return _extract_with_gemini(model, resume_text, role)
+            text = _clean_json(text)
+            data = json.loads(text)
+            skills = data.get("skills", [])
+            projects = data.get("projects", [])
+            if skills:
+                print(f"[AI] Extracted {len(skills)} skills and {len(projects)} projects")
+                return skills, projects, True
         except Exception as e:
-            print(f"[AI] Gemini extraction failed: {e}. Using fallback.")
+            print(f"[AI] JSON parse error: {e} — using fallback")
 
-    # Fallback
+    print("[AI] Using rule-based fallback for extraction")
     skills = extract_skills_fallback(resume_text)
     projects = extract_projects_fallback(resume_text)
     return skills, projects, False
@@ -49,91 +118,54 @@ def generate_roadmap(
     extracted_projects: List[str],
     strengths: List[str],
 ) -> Tuple[Dict, bool]:
-    """
-    Generate a personalized roadmap.
-    Returns (roadmap_dict, ai_used).
-    """
-    model = _get_gemini_model()
+    """Generate personalized roadmap. Returns (roadmap_dict, ai_used)."""
 
-    if model:
-        try:
-            return _roadmap_with_gemini(model, role, extracted_skills, missing_skills, extracted_projects, strengths)
-        except Exception as e:
-            print(f"[AI] Gemini roadmap failed: {e}. Using fallback.")
-
-    roadmap = generate_roadmap_fallback(role, missing_skills)
-    return roadmap, False
-
-
-def _extract_with_gemini(model, resume_text: str, role: str) -> Tuple[List[str], List[str], bool]:
-    prompt = f"""You are a resume parser. Extract information from this resume for someone targeting a {role} role.
-
-Resume text:
-{resume_text[:4000]}
-
-Return ONLY valid JSON (no markdown, no backticks) in this exact format:
-{{
-  "skills": ["skill1", "skill2", "skill3"],
-  "projects": ["brief project description 1", "brief project description 2"]
-}}
-
-Rules:
-- skills: list all technical skills, tools, languages, frameworks mentioned
-- projects: list up to 5 projects as brief one-line descriptions
-- Return only JSON, nothing else"""
-
-    response = model.generate_content(prompt)
-    text = response.text.strip()
-
-    # Strip markdown code fences if present
-    text = re.sub(r'^```json\s*', '', text)
-    text = re.sub(r'^```\s*', '', text)
-    text = re.sub(r'\s*```$', '', text)
-
-    data = json.loads(text)
-    skills = data.get("skills", [])
-    projects = data.get("projects", [])
-    return skills, projects, True
-
-
-def _roadmap_with_gemini(
-    model,
-    role: str,
-    extracted_skills: List[str],
-    missing_skills: List[str],
-    extracted_projects: List[str],
-    strengths: List[str],
-) -> Tuple[Dict, bool]:
-    prompt = f"""You are a senior tech career advisor. Create a personalized learning roadmap.
+    prompt = f"""You are a senior tech career advisor. Create a specific, personalized learning roadmap.
 
 Target Role: {role}
-Current Skills: {', '.join(extracted_skills[:20]) if extracted_skills else 'None identified'}
-Missing Core Skills: {', '.join(missing_skills[:10]) if missing_skills else 'None'}
-Project Experience: {'; '.join(extracted_projects[:3]) if extracted_projects else 'None identified'}
+Current Skills: {', '.join(extracted_skills[:25]) if extracted_skills else 'None identified'}
+Missing Core Skills: {', '.join(missing_skills[:10]) if missing_skills else 'None — strong profile'}
+Project Experience: {'; '.join(extracted_projects[:4]) if extracted_projects else 'None identified'}
 Strengths: {', '.join(strengths) if strengths else 'Building foundations'}
 
-Return ONLY valid JSON (no markdown, no backticks) in this exact format:
+Return ONLY valid JSON in this exact format:
 {{
-  "immediate": ["action1", "action2", "action3"],
-  "short_term": ["action1", "action2", "action3"],
-  "long_term": ["action1", "action2", "action3"],
+  "immediate": ["action1", "action2", "action3", "action4"],
+  "short_term": ["action1", "action2", "action3", "action4"],
+  "long_term": ["action1", "action2", "action3", "action4"],
   "suggested_projects": ["project1", "project2", "project3"]
 }}
 
 Rules:
-- immediate: 3-4 actions to do RIGHT NOW (this week/month)
-- short_term: 3-4 actions for next 3 months
-- long_term: 3-4 actions for 6+ months
-- suggested_projects: 3 specific projects to build that will impress hiring managers for {role}
-- Be specific, actionable, and tailored to the missing skills
+- immediate: 3-4 specific actions for this week/month — focus on biggest missing skills
+- short_term: 3-4 actions for next 3 months — deeper skills + portfolio building  
+- long_term: 3-4 actions for 6+ months — advanced topics + career positioning
+- suggested_projects: 3 concrete specific projects to build for {role} hiring managers
+- Tailor everything to the MISSING skills — don't suggest things they already know
+- Each action should be one clear specific sentence
 - Return only JSON, nothing else"""
 
-    response = model.generate_content(prompt)
-    text = response.text.strip()
+    text = _call_groq(prompt)
 
-    text = re.sub(r'^```json\s*', '', text)
-    text = re.sub(r'^```\s*', '', text)
-    text = re.sub(r'\s*```$', '', text)
+    if text:
+        try:
+            text = _clean_json(text)
+            roadmap = json.loads(text)
+            if roadmap.get("immediate"):
+                print("[AI] Roadmap generated successfully")
+                return roadmap, True
+        except Exception as e:
+            print(f"[AI] Roadmap JSON parse error: {e} — using fallback")
 
-    roadmap = json.loads(text)
-    return roadmap, True
+    print("[AI] Using rule-based fallback for roadmap")
+    roadmap = generate_roadmap_fallback(role, missing_skills)
+    return roadmap, False
+
+
+def _clean_json(text: str) -> str:
+    """Strip markdown fences from response."""
+    text = text.strip()
+    text = re.sub(r'^```json\s*', '', text, flags=re.MULTILINE)
+    text = re.sub(r'^```\s*', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\s*```$', '', text, flags=re.MULTILINE)
+    return text.strip()
