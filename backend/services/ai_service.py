@@ -120,13 +120,49 @@ def generate_roadmap(
 ) -> Tuple[Dict, bool]:
     """Generate personalized roadmap. Returns (roadmap_dict, ai_used)."""
 
-    prompt = f"""You are a senior tech career advisor. Create a specific, personalized learning roadmap.
+    # Assess experience level from what was extracted
+    skill_count = len(extracted_skills)
+    project_count = len(extracted_projects)
 
-Target Role: {role}
-Current Skills: {', '.join(extracted_skills[:25]) if extracted_skills else 'None identified'}
-Missing Core Skills: {', '.join(missing_skills[:10]) if missing_skills else 'None — strong profile'}
-Project Experience: {'; '.join(extracted_projects[:4]) if extracted_projects else 'None identified'}
-Strengths: {', '.join(strengths) if strengths else 'Building foundations'}
+    if skill_count >= 15 and project_count >= 4:
+        experience_level = "experienced professional"
+        level_context = "They are NOT a beginner. Do not suggest learning fundamentals they clearly already know."
+    elif skill_count >= 8 and project_count >= 2:
+        experience_level = "mid-level developer"
+        level_context = "They have solid foundations. Focus on bridging specific gaps and leveling up, not basics."
+    elif skill_count >= 4:
+        experience_level = "junior developer with some experience"
+        level_context = "They have some experience. Build on what they know — do not start from scratch."
+    else:
+        experience_level = "early-career developer"
+        level_context = "They are building their foundation. Guide them practically step by step."
+
+    projects_formatted = chr(10).join(
+        f"- {p}" for p in extracted_projects[:5]
+    ) if extracted_projects else "- No projects identified"
+
+    prompt = f"""You are a senior tech career advisor giving a personalized roadmap to a real person.
+
+TARGET ROLE: {role}
+CANDIDATE LEVEL: {experience_level}
+IMPORTANT CONTEXT: {level_context}
+
+WHAT THEY ALREADY KNOW ({skill_count} skills identified):
+{", ".join(extracted_skills[:30]) if extracted_skills else "None identified"}
+
+THEIR EXISTING PROJECTS AND EXPERIENCE:
+{projects_formatted}
+
+WHAT THEY ARE MISSING for {role}:
+{", ".join(missing_skills) if missing_skills else "No critical gaps — strong profile for this role"}
+
+THEIR STRENGTHS:
+{", ".join(strengths) if strengths else "Building foundations"}
+
+Based on their CURRENT SITUATION, generate a realistic roadmap that picks up exactly where they are.
+DO NOT suggest things they already know. DO NOT treat them as a beginner if they are not.
+Reference their existing skills when suggesting next steps (e.g. "Since you know Docker, now add Kubernetes").
+Make suggested projects build on their existing project experience and tech stack.
 
 Return ONLY valid JSON in this exact format:
 {{
@@ -137,12 +173,13 @@ Return ONLY valid JSON in this exact format:
 }}
 
 Rules:
-- immediate: 3-4 specific actions for this week/month — focus on biggest missing skills
-- short_term: 3-4 actions for next 3 months — deeper skills + portfolio building  
-- long_term: 3-4 actions for 6+ months — advanced topics + career positioning
-- suggested_projects: 3 concrete specific projects to build for {role} hiring managers
-- Tailor everything to the MISSING skills — don't suggest things they already know
-- Each action should be one clear specific sentence
+- immediate: 3-4 actions for RIGHT NOW — the most impactful gaps to close first given their current level
+- short_term: 3-4 actions for next 3 months — deepen expertise and build targeted portfolio pieces
+- long_term: 3-4 actions for 6+ months — senior-level positioning, advanced topics, career moves
+- suggested_projects: 3 specific projects that directly showcase {role} skills to hiring managers.
+  These must BUILD ON their existing experience and tech stack, not start from zero.
+  Be concrete — name the project type, the tech to use, and what problem it solves.
+- Every single action must be tailored to THIS person's current situation
 - Return only JSON, nothing else"""
 
     text = _call_groq(prompt)
