@@ -1,4 +1,4 @@
-# skill-bridge-career-navigator
+# Skill-bridge-career-navigator
 
 **Candidate Name:** Arya Gupta  
 **Scenario Chosen:** Career Navigation Platform — Resume analysis with personalized learning roadmap  
