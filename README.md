@@ -1,4 +1,4 @@
-# skill-bridge-career-navigator
+# Skill-bridge-career-navigator
 
 **Candidate Name:** Arya Gupta  
 **Scenario Chosen:** Career Navigation Platform — Resume analysis with personalized learning roadmap  
@@ -13,7 +13,9 @@
 - Node.js 18 or higher
 - Groq API key 
 
-### Demo video
+### Demo
+
+[![Watch the demo](https://img.youtube.com/vi/9aQG4D9OJH8/maxresdefault.jpg)](https://youtu.be/9aQG4D9OJH8)
 
 ### Run Commands
 ```bash
